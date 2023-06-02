@@ -1,0 +1,23 @@
+{
+  "name": "redsocialconlogin",
+  "version": "1.0.0",
+  "description": "- App para tatuadores.",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "colors": "^1.4.0",
+    "dotenv": "^16.1.3",
+    "express": "^4.18.2",
+    "express-fileupload": "^1.4.0",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.41.0",
+    "nodemon": "^2.0.22"
+  }
+}
