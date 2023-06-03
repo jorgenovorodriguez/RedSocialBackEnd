@@ -2,7 +2,7 @@
 
 - App para tatuadores.
 
-- Se trata de una web donde los usuarios tienen dos roles (artista o cliente) y los primeros publican fotos de sus trabajos.
+- Se trata de una web donde los usuarios tienen dos roles (artista o estudio). Los primeros publican fotos de sus trabajos, y los segundos publican "ofertas" de trabajo.
 
 - Cada publicación tiene un título, descripción, lugar y una foto asignada.
 
@@ -10,9 +10,9 @@
 
 - Cada publicación puede ser comentada por los demás usuarios registrados, independientemente de su rol.
 
-- La finalidad es poner encontacto a los artistas con posibles clientes.
+- La finalidad es poner encontacto a los artistas con los estudios
 
-- Sólo los usuarios registrados pueden acceder a los datos de contacto de los artistas.
+- Sólo los usuarios registrados pueden acceder a los datos de contacto de los demás usuarios.
 
 ## Instalar✅
 
@@ -30,7 +30,7 @@
 
 ## Base de datos✅
 
-- **`users:`** id, email, password, username, role, avatar, active, registrationCode, recoverPassCode, createdAt, modifiedAt.
+- **`users:`** id, email, password, username, role, avatar, personalInfo, active, registrationCode, recoverPassCode, createdAt, modifiedAt.
 
 - **`publications:`** id, title, photoName, description, place, userId, createdAt.
 
@@ -52,10 +52,10 @@
 
 ## Endpoints de las publicaciones
 
-- **POST** - [`/publications`] - Crea una publicación. ➡️ `Token` **Rol Artista**
+- **POST** - [`/publications`] - Crea una publicación. ➡️ `Token`
 - **GET** - [`/publications`] - Retorna el listado de publicaciones.
 - **GET** - [`/publications/:place`] - Retorna el listado de publicaciones de un lugar concreto.
 - **GET** - [`/publications/:publicationId`] - Retorna una entrada en concreto.
 - **POST** - [`/publications/:publicationId/likes`] - Agrega un like a una publicación. ➡️ `Token`
-- **DELETE** - [`/publications/:publicationId`] - Eliminar una publicación. ➡️ `Token` **Rol Artista**
+- **DELETE** - [`/publications/:publicationId`] - Eliminar una publicación. ➡️ `Token`
 - **POST** - [`/publications/:publicationId/comments`] - Agregar un comentario a una entrada. ➡️ `Token`
