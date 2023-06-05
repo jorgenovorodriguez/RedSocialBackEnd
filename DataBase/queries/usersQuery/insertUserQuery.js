@@ -6,7 +6,7 @@ const { generateError } = require('../../../errors');
 
 const insertUserQuery = async (email, username, password) => {
   let connection;
-
+  console.log(email);
   try {
     connection = await getDB();
 

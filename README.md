@@ -59,3 +59,4 @@
 - **POST** - [`/publications/:publicationId/likes`] - Agrega un like a una publicación. ➡️ `Token`
 - **DELETE** - [`/publications/:publicationId`] - Eliminar una publicación. ➡️ `Token`
 - **POST** - [`/publications/:publicationId/comments`] - Agregar un comentario a una entrada. ➡️ `Token`
+-- TENEMOS QUE HACER UNA RUTA PARA ELIMINAR LOS COMENTARIOS TANYO SU CREADOR COMO EL DUEÑO DE LA PUBLICACIÓN

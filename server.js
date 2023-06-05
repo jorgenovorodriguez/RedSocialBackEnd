@@ -4,8 +4,8 @@ const express = require('express');
 const colors = require('colors');
 const fileUpload = require('express-fileupload');
 
-const { errorStandard, notFound, generateError } = require('./errors');
-const newUser = require('./controllers/users/newUser');
+const { errorStandard, notFound } = require('./errors');
+const { newUser } = require('./controllers/users/index');
 
 const app = express();
 
@@ -15,7 +15,39 @@ app.use(express.json());
 
 app.use(fileUpload());
 
+//MIDDEWARE USERS
 app.post(`/users`, newUser);
+
+app.put('/users/validate/:regCode',);
+
+app.post('/users/login',);
+
+app.get('/users/:userId',);
+
+app.get('/users',);
+
+app.put('/users/avatar',);
+
+app.put('/users/password/recover',);
+
+app.put('/users/password/recover/active',);
+
+app.put('/users/password',);
+
+//MIDDEWARE PUBLICACIONES
+app.post('/publications',);
+
+app.get('/publications',);
+
+app.get('/publications/:place',);
+
+app.get('/publications/:publicationId',);
+
+app.post('/publications/:publicationId/likes',);
+
+app.delete('/publications/:publicationId',);
+
+app.post('/publications/:publicationId/comments',);
 
 //******************//
 app.use(errorStandard);
