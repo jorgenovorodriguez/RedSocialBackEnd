@@ -13,7 +13,7 @@ const newUser = async (req, res, next) => {
 
     const registrationCode = uuid();
 
-    await insertUserQuery(email, username, password);
+    await insertUserQuery(email, username, password, registrationCode);
 
     const emailSubject = 'Activa tu usuario en Diario de Viajes';
 

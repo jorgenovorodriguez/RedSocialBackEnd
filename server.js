@@ -5,7 +5,7 @@ const colors = require('colors');
 const fileUpload = require('express-fileupload');
 
 const { errorStandard, notFound } = require('./errors');
-const { newUser } = require('./controllers/users/index');
+const { newUser, validateCode } = require('./controllers/users/index');
 
 const app = express();
 
@@ -17,6 +17,8 @@ app.use(fileUpload());
 
 //MIDDEWARE USERS
 app.post(`/users`, newUser);
+
+app.put('/users/validate/:regCode', validateCode);
 
 app.put('/users/validate/:regCode',);
 
