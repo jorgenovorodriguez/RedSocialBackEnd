@@ -4,7 +4,7 @@ const express = require('express');
 const colors = require('colors');
 const fileUpload = require('express-fileupload');
 
-const { errorStandard, notFound } = require('./errors');
+const { errorStandard, notFound, } = require('./errors');
 const { newUser, validateCode } = require('./controllers/users/index');
 
 const app = express();

@@ -15,11 +15,11 @@ const newUser = async (req, res, next) => {
 
     await insertUserQuery(email, username, password, registrationCode);
 
-    const emailSubject = 'Activa tu usuario en Diario de Viajes';
+    const emailSubject = 'Activa tu usuario en tattooArt';
 
     const emailBody = `
 
-            ¡Bienvenid@ ${username}!
+            ¡Bienvenid@ ${username} a tattoArt!
 
             Por favor, verifica tu usuario a través del http://localhost:8000/users/validate/${registrationCode}.
         `;
