@@ -27,4 +27,4 @@ const sendMail = async (email, subject, body) => {
 };
 
 
-module.exports = { sendMail, };
+module.exports = sendMail;

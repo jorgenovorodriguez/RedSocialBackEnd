@@ -1,7 +1,7 @@
-const insertUserQuery = require('../../DataBase/queries/usersQuery/insertUserQuery');
+const insertUserQuery = require('../../models/usersQuery/insertUserQuery');
 const { v4: uuid } = require('uuid');
-const { generateError } = require('../../errors');
-const { sendMail } = require('../../helpers');
+const { generateError } = require('../../services/errors');
+const sendMail = require('../../services/sendMail');
 
 
 const newUser = async (req, res, next) => {
@@ -29,7 +29,7 @@ const newUser = async (req, res, next) => {
     res.send({
 
       status: 'ok',
-      message: 'Usuario creado',
+      message: 'Usuario creado, por favor revise su email para la activación de su cuenta',
     });
 
   } catch (err) {

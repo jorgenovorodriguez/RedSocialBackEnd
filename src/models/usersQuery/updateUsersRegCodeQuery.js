@@ -1,7 +1,7 @@
-const getDB = require('../../getDB');
-const { generateError } = require('../../../errors.js');
+const getDB = require('../../db/getDB');
+const { generateError } = require('../../services/errors');
 
-const upDateUsersRegCodeQuery = async (regCode) => {
+const updateUsersRegCodeQuery = async (regCode) => {
 
     let connection;
 
@@ -30,4 +30,4 @@ const upDateUsersRegCodeQuery = async (regCode) => {
     }
 };
 
-module.exports = upDateUsersRegCodeQuery;
+module.exports = updateUsersRegCodeQuery;

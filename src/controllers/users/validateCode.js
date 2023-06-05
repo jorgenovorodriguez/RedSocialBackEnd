@@ -1,4 +1,4 @@
-const upDateUsersRegCodeQuery = require('../../DataBase/queries/usersQuery/upDateUsersRegCodeQuery');
+const updateUsersRegCodeQuery = require('../../models/usersQuery/updateUsersRegCodeQuery');
 
 
 const validateCode = async (req, res, next) => {
@@ -7,7 +7,7 @@ const validateCode = async (req, res, next) => {
 
         const { regCode } = req.params;
 
-        await upDateUsersRegCodeQuery(regCode)
+        await updateUsersRegCodeQuery(regCode)
 
         res.send({
 
