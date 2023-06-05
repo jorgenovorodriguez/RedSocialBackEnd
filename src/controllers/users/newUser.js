@@ -3,7 +3,6 @@ const { v4: uuid } = require('uuid');
 const { generateError } = require('../../services/errors');
 const sendMail = require('../../services/sendMail');
 
-
 const newUser = async (req, res, next) => {
   try {
     const { email, username, password } = req.body;
@@ -27,16 +26,13 @@ const newUser = async (req, res, next) => {
     await sendMail(email, emailSubject, emailBody);
 
     res.send({
-
       status: 'ok',
-      message: 'Usuario creado, por favor revise su email para la activación de su cuenta',
+      message:
+        'Usuario creado, por favor revise su email para la activación de su cuenta',
     });
-
   } catch (err) {
-
     next(err);
   }
 };
-
 
 module.exports = newUser;

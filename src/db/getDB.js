@@ -7,6 +7,19 @@ let pool;
 const getDB = async () => {
   try {
     if (!pool) {
+      // Creamos una conexión con la base de datos.
+      const db = await mysql.createConnection({
+        host: MYSQL_HOST,
+        user: MYSQL_USER,
+        password: MYSQL_PASS,
+        timezone: 'Z',
+      });
+
+      // Con la conexión anterior creamos la base de datos si no existe.
+      db.query(`CREATE DATABASE IF NOT EXISTS ${MYSQL_DB}`);
+
+      db.query('USE tattooArt');
+
       pool = mysql.createPool({
         connectionLimit: 10,
         host: MYSQL_HOST,
