@@ -8,6 +8,7 @@ const errorStandard = (err, req, res, next) => {
 };
 
 const notFound = (req, res) => {
+
   res.status(404).send({
     status: 'error',
     message: 'Ruta no encontrada',
@@ -15,6 +16,7 @@ const notFound = (req, res) => {
 };
 
 const generateError = (msg, code) => {
+
   const err = new Error(msg);
   err.httpStatus = code;
   throw err;

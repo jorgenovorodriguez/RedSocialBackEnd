@@ -1,8 +1,8 @@
-const getDB = require('../../getDB');
+const getDB = require('../../db/getDB');
 
 const bcrypt = require('bcrypt');
 
-const { generateError } = require('../../../errors');
+const { generateError } = require('../../services/errors');
 
 const insertUserQuery = async (email, username, password, registrationCode) => {
 

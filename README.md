@@ -40,15 +40,15 @@
 
 ## Endpoints del usuario
 
-- **POST** - [`/users`] - Crea un usuario pendiente de validar.
-- **PUT** - [`/users/validate/:regCode`] - Valida a un usuario recién registrado para darle acceso.
+- **POST** - [`/users`] - Crea un usuario pendiente de validar.✅
+- **PUT** - [`/users/validate/:regCode`] - Valida a un usuario recién registrado para darle acceso.✅
 - **POST** - [`/users/login`] - Logea a un usuario retornando un token.
 - **GET** - [`/users/:userId`] - Retorna información de un usuario concreto.
 - **GET** - [`/users`] - Retorna información del usuario del token. ➡️ `Token` **Revisar ruta**
 - **PUT** - [`/users/avatar`] - Permite actualizar el avatar del usuario. ➡️ `Token`
-- **PUT** - [`/users/password/recover`] - Envía al usuario un correo de recuperación de contraseña.
-- **PUT** - [`/users/password/recover/active`] - Actualizar la contraseña mediante la recuperación.
-- **PUT** - [`/users/password`] - Resetea la contraseña de un usuario utilizando un código de recuperación.➡️ `Token` **Revisar**
+- **POST** - [`/users/password/recover`] - Envía al usuario un correo de recuperación de contraseña.
+- **PUT** - [`/users/password/recover`] - Actualizar la contraseña mediante la recuperación.
+- **PUT** - [`/users/password`] - Resetea la contraseña de un usuario .➡️ `Token` **Revisar**
 
 ## Endpoints de las publicaciones
 
