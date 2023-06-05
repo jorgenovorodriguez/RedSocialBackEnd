@@ -5,7 +5,8 @@ const route = express.Router();
 
 const { newUser,
     validateCode,
-    loginUsers } = require('../controllers/users');
+    loginUsers,
+    getUser, } = require('../controllers/users');
 
 
 
@@ -16,7 +17,7 @@ route.put('/users/validate/:regCode', validateCode);
 
 route.post('/users/login', loginUsers);
 
-route.get('/users/:userId',);
+route.get('/users/:userId', getUser);
 
 route.get('/users',);
 
