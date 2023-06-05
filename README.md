@@ -42,11 +42,11 @@
 
 - **POST** - [`/users`] - Crea un usuario pendiente de validar.✅
 - **PUT** - [`/users/validate/:regCode`] - Valida a un usuario recién registrado para darle acceso.✅
-- **POST** - [`/users/login`] - Logea a un usuario retornando un token.
-- **GET** - [`/users/:userId`] - Retorna información de un usuario concreto.
+- **POST** - [`/users/login`] - Logea a un usuario retornando un token.✅
+- **GET** - [`/users/:userId`] - Retorna información de un usuario concreto.✅
 - **GET** - [`/users`] - Retorna información del usuario del token. ➡️ `Token` **Revisar ruta**
 - **PUT** - [`/users/avatar`] - Permite actualizar el avatar del usuario. ➡️ `Token`
-- **POST** - [`/users/password/recover`] - Envía al usuario un correo de recuperación de contraseña.
+- **POST** - [`/users/password/recover`] - Envía al usuario un correo de recuperación de contraseña.✅
 - **PUT** - [`/users/password/recover`] - Actualizar la contraseña mediante la recuperación.
 - **PUT** - [`/users/password`] - Resetea la contraseña de un usuario .➡️ `Token` **Revisar**
 
@@ -59,4 +59,3 @@
 - **POST** - [`/publications/:publicationId/likes`] - Agrega un like a una publicación. ➡️ `Token`
 - **DELETE** - [`/publications/:publicationId`] - Eliminar una publicación. ➡️ `Token`
 - **POST** - [`/publications/:publicationId/comments`] - Agregar un comentario a una entrada. ➡️ `Token`
-
