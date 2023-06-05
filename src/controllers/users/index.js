@@ -4,18 +4,18 @@ const validateCode = require('./validateCode');
 
 const loginUsers = require('./loginUser');
 
-const getUser = require('./getUser')
+const getUser = require('./getUser');
 
-
-
-
+const sendRecoverPass = require('./sendRecoverPass');
 
 module.exports = {
-    newUser,
+  newUser,
 
-    validateCode,
+  validateCode,
 
-    loginUsers,
+  loginUsers,
 
-    getUser,
+  getUser,
+
+  sendRecoverPass,
 };
