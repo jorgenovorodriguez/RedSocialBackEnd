@@ -4,6 +4,8 @@ const validateCode = require('./validateCode');
 
 const loginUsers = require('./loginUser');
 
+const getUser = require('./getUser')
+
 
 
 
@@ -14,4 +16,6 @@ module.exports = {
     validateCode,
 
     loginUsers,
+
+    getUser,
 };
