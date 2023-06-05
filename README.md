@@ -59,3 +59,4 @@
 - **POST** - [`/publications/:publicationId/likes`] - Agrega un like a una publicación. ➡️ `Token`
 - **DELETE** - [`/publications/:publicationId`] - Eliminar una publicación. ➡️ `Token`
 - **POST** - [`/publications/:publicationId/comments`] - Agregar un comentario a una entrada. ➡️ `Token`
+
