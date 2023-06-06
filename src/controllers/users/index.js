@@ -1,5 +1,7 @@
 const newUser = require('./newUser');
 
+const getOwnUser = require('./getOwnUser');
+
 const validateCode = require('./validateCode');
 
 const loginUsers = require('./loginUser');
@@ -26,4 +28,6 @@ module.exports = {
   editUsersRecoverPass,
 
   editUsersPass,
+
+  getOwnUser,
 };

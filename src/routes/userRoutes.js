@@ -3,12 +3,12 @@ const route = express.Router();
 const authUser = require('../middlewares/authUsers');
 const userExists = require('../middlewares/userExists');
 
-
 const {
   newUser,
   validateCode,
   loginUsers,
   getUser,
+  getOwnUser,
   sendRecoverPass,
   editUsersRecoverPass,
   editUsersPass,
@@ -23,7 +23,7 @@ route.post('/users/login', loginUsers);
 
 route.get('/users/:userId', getUser);
 
-route.get('/users', authUser, userExists);
+route.get('/users', authUser, userExists, getOwnUser);
 
 route.put('/users/avatar', authUser, userExists);
 
