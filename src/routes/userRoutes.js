@@ -20,7 +20,7 @@ route.get('/users/:userId',);
 
 route.get('/users',);
 
-route.put('/users/avatar',);
+route.put('/users/avatar', authUser, userExists, editUserAvatar);
 
 route.put('/users/password/recover',);
 
