@@ -12,6 +12,7 @@ const {
   sendRecoverPass,
   editUsersRecoverPass,
   editUsersPass,
+  editUserAvatar,
 } = require('../controllers/users');
 
 //MIDDEWARE USERS
@@ -32,5 +33,7 @@ route.post('/users/password/recover', sendRecoverPass);
 route.put('/users/password/recover', editUsersRecoverPass);
 
 route.put('/users/password', authUser, userExists, editUsersPass);
+
+route.put('/users/avatar', authUser, userExists, editUserAvatar);
 
 module.exports = route;
