@@ -26,7 +26,7 @@ route.get('/users/:userId', getUser);
 
 route.get('/users', authUser, userExists, getOwnUser);
 
-route.put('/users/avatar', authUser, userExists);
+route.put('/users/avatar', authUser, userExists, editUserAvatar);
 
 route.post('/users/password/recover', sendRecoverPass);
 
