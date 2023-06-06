@@ -18,7 +18,7 @@ const sendRecoverPass = async (req, res, next) => {
     await selectUserByEmailQuery(email);
 
     // Generamos el código de recuperación de contraseña.
-    const recoverPassCode = randomstring.generate(8);
+    const recoverPassCode = randomstring.generate(4);
 
     // Insertamos el código de recuperación en la base de datos.
     await updateUserRecoverPassQuery(email, recoverPassCode);

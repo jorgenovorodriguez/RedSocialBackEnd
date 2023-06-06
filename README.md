@@ -47,8 +47,8 @@
 - **GET** - [`/users`] - Retorna información del usuario del token. ➡️ `Token` **Revisar ruta**
 - **PUT** - [`/users/avatar`] - Permite actualizar el avatar del usuario. ➡️ `Token`
 - **POST** - [`/users/password/recover`] - Envía al usuario un correo de recuperación de contraseña.✅
-- **PUT** - [`/users/password/recover`] - Actualizar la contraseña mediante la recuperación.
-- **PUT** - [`/users/password`] - Resetea la contraseña de un usuario .➡️ `Token` **Revisar**
+- **PUT** - [`/users/password/recover`] - Actualizar la contraseña mediante la recuperación.✅
+- **PUT** - [`/users/password`] - Resetea la contraseña de un usuario .➡️ `Token` **Revisar**✅
 
 ## Endpoints de las publicaciones
 

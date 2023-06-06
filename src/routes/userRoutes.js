@@ -2,13 +2,16 @@ const express = require('express');
 const route = express.Router();
 const authUser = require('../middlewares/authUsers');
 const userExists = require('../middlewares/userExists');
-const sendRecoverPass = require('../controllers/users/sendRecoverPass');
+
 
 const {
   newUser,
   validateCode,
   loginUsers,
   getUser,
+  sendRecoverPass,
+  editUsersRecoverPass,
+  editUsersPass,
 } = require('../controllers/users');
 
 //MIDDEWARE USERS
@@ -24,10 +27,10 @@ route.get('/users', authUser, userExists);
 
 route.put('/users/avatar', authUser, userExists);
 
-route.put('/users/password/recover', sendRecoverPass);
+route.post('/users/password/recover', sendRecoverPass);
 
-route.put('/users/password/recover/active');
+route.put('/users/password/recover', editUsersRecoverPass);
 
-route.put('/users/password', authUser, userExists);
+route.put('/users/password', authUser, userExists, editUsersPass);
 
 module.exports = route;
