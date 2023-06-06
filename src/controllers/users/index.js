@@ -14,7 +14,7 @@ const editUsersRecoverPass = require('./editUsersRecoverPass');
 
 const editUsersPass = require('./editUserPass');
 
-const editUserAvatar = require('./editUserAvatar');
+const editUserAvatar = require('./editUseravatar');
 
 module.exports = {
   newUser,
