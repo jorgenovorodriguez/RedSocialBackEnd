@@ -4,6 +4,7 @@ const updateUserAvatarQuery = require('../../models/usersQuery/updateUserAvatarQ
 const { generateError } = require('../../services/errors');
 const savePhoto = require('../../services/savePhoto');
 const deletePhoto = require('../../services/deletePhoto');
+const colors = require('colors');
 
 const editUserAvatar = async (req, res, next) => {
   try {
@@ -18,7 +19,6 @@ const editUserAvatar = async (req, res, next) => {
     if (user.avatar) {
       await deletePhoto(user.avatar);
     }
-
     const avatar = await savePhoto(req.files.avatar, 100);
 
     await updateUserAvatarQuery(avatar, req.user.id);
