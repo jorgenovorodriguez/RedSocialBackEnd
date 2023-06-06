@@ -8,6 +8,10 @@ const getUser = require('./getUser');
 
 const sendRecoverPass = require('./sendRecoverPass');
 
+const editUsersRecoverPass = require('./editUsersRecoverPass');
+
+const editUsersPass = require('./editUserPass');
+
 module.exports = {
   newUser,
 
@@ -18,4 +22,8 @@ module.exports = {
   getUser,
 
   sendRecoverPass,
+
+  editUsersRecoverPass,
+
+  editUsersPass,
 };
