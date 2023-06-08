@@ -54,7 +54,7 @@
 
 - **POST** - [`/publications`] - Crea una publicación. ➡️ `Token` ✅
 - **GET** - [`/publications`] - Retorna un listado de publicaciones en función de una palabra clave. ✅
-- **GET** - [`/publications/:publicationId`] - Retorna una publicación en concreto.
+- **GET** - [`/publications/:publicationId`] - Retorna una publicación en concreto. ✅
 - **POST** - [`/publications/:publicationId/likes`] - Agrega un like a una publicación. ➡️ `Token` ✅
 - **DELETE** - [`/publications/:publicationId/likes`] - Retira un like a una publicación. ➡️ `Token` ✅
 - **DELETE** - [`/publications/:publicationId`] - Eliminar una publicación propia. ➡️ `Token`

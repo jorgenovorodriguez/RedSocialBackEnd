@@ -12,6 +12,8 @@ const {
   newLike,
 
   deleteLike,
+
+  getPublication,
 } = require('../controllers/publications');
 
 //MIDDLEWARES PUBLICATIONS
@@ -23,7 +25,7 @@ route.post('/publications', authUser, userExists, newPublication);
 route.get('/publications', authUserOptional, getListPublication);
 
 //Retorna una publicación en concreto.
-route.get('/publications/:publicationId');
+route.get('/publications/:publicationId', authUserOptional, getPublication);
 
 //Agrega un like a una publicación.
 route.post('/publications/:publicationId/likes', authUser, userExists, newLike);
