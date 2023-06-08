@@ -1,19 +1,45 @@
 const express = require('express');
 const route = express.Router();
+const authUser = require('../middlewares/authUsers');
+const userExists = require('../middlewares/userExists');
+const authUserOptional = require('../middlewares/authUserOptional');
 
+const {
+  newPublication,
 
-route.post('/publications',);
+  getListPublication,
 
-route.get('/publications',);
+  newLike,
 
-route.get('/publications/:place',);
+  deleteLike,
+} = require('../controllers/publications');
 
-route.get('/publications/:publicationId',);
+//MIDDLEWARES PUBLICATIONS
 
-route.post('/publications/:publicationId/likes',);
+//Crea una publicación nueva.
+route.post('/publications', authUser, userExists, newPublication);
 
-route.delete('/publications/:publicationId',);
+//Retorna un listado de publicaciones con un filtro de keyword.
+route.get('/publications', authUserOptional, getListPublication);
 
-route.post('/publications/:publicationId/comments',);
+//Retorna una publicación en concreto.
+route.get('/publications/:publicationId');
+
+//Agrega un like a una publicación.
+route.post('/publications/:publicationId/likes', authUser, userExists, newLike);
+
+//Retira un like a una publicación.
+route.delete(
+  '/publications/:publicationId/likes',
+  authUser,
+  userExists,
+  deleteLike
+);
+
+//Eliminar una publicación en concreto.
+route.delete('/publications/:publicationId');
+
+//Agrega un comentario a una publicación concreta.
+route.post('/publications/:publicationId/comments');
 
 module.exports = route;

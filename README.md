@@ -47,15 +47,15 @@
 - **GET** - [`/users`] - Retorna información del usuario del token. ➡️ `Token` ✅
 - **PUT** - [`/users/avatar`] - Permite actualizar el avatar del usuario. ➡️ `Token` ✅
 - **POST** - [`/users/password/recover`] - Envía al usuario un correo de recuperación de contraseña.✅
-- **PUT** - [`/users/password/recover`] - Actualizar la contraseña mediante la recuperación.✅
-- **PUT** - [`/users/password`] - Resetea la contraseña de un usuario .➡️ `Token` **Revisar**✅
+- **PUT** - [`/users/password/recover`] - Permite actualizar la contraseña mediante la recuperación.✅
+- **PUT** - [`/users/password`] - Resetea la contraseña de un usuario.➡️ `Token` ✅
 
 ## Endpoints de las publicaciones
 
-- **POST** - [`/publications`] - Crea una publicación. ➡️ `Token`
-- **GET** - [`/publications`] - Retorna el listado de publicaciones.
-- **GET** - [`/publications/:place`] - Retorna el listado de publicaciones de un lugar concreto.
-- **GET** - [`/publications/:publicationId`] - Retorna una entrada en concreto.
-- **POST** - [`/publications/:publicationId/likes`] - Agrega un like a una publicación. ➡️ `Token`
-- **DELETE** - [`/publications/:publicationId`] - Eliminar una publicación. ➡️ `Token`
-- **POST** - [`/publications/:publicationId/comments`] - Agregar un comentario a una entrada. ➡️ `Token`
+- **POST** - [`/publications`] - Crea una publicación. ➡️ `Token` ✅
+- **GET** - [`/publications`] - Retorna un listado de publicaciones en función de una palabra clave. ✅
+- **GET** - [`/publications/:publicationId`] - Retorna una publicación en concreto.
+- **POST** - [`/publications/:publicationId/likes`] - Agrega un like a una publicación. ➡️ `Token` ✅
+- **DELETE** - [`/publications/:publicationId/likes`] - Retira un like a una publicación. ➡️ `Token` ✅
+- **DELETE** - [`/publications/:publicationId`] - Eliminar una publicación propia. ➡️ `Token`
+- **POST** - [`/publications/:publicationId/comments`] - Agrega un comentario a una publicación concreta. ➡️ `Token`
