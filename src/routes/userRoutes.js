@@ -28,7 +28,7 @@ route.put('/users/validate/:regCode', validateCode);
 route.post('/users/login', loginUsers);
 
 //Retorna información de un usuario concreto.
-route.get('/users/:userId', getUser);
+route.get('/users/:userId', authUserOptional, getUser);
 
 //Retorna información del usuario del token.
 route.get('/users', authUser, userExists, getOwnUser);
