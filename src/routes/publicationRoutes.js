@@ -14,6 +14,10 @@ const {
   deleteLike,
 
   getPublication,
+
+  addComent,
+
+  deletePublication,
 } = require('../controllers/publications');
 
 //MIDDLEWARES PUBLICATIONS
@@ -35,13 +39,14 @@ route.delete(
   '/publications/:publicationId/likes',
   authUser,
   userExists,
-  deleteLike
+  deleteLike,
+
 );
 
 //Eliminar una publicación en concreto.
-route.delete('/publications/:publicationId');
+route.delete('/publications/:publicationId', authUser, userExists, deletePublication);
 
 //Agrega un comentario a una publicación concreta.
-route.post('/publications/:publicationId/comments');
+route.post('/publications/:publicationId/comments', authUser, userExists, addComent);
 
 module.exports = route;
