@@ -11,8 +11,6 @@ const getUsers = async (req, res, next) => {
       generateError('Usuario no encontrado', 404);
     }
 
-    delete user.email;
-
     res.send({
       status: 'ok',
       data: {

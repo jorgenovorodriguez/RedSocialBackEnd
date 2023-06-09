@@ -14,6 +14,7 @@ const {
   editUsersPass,
   editUserAvatar,
 } = require('../controllers/users');
+const authUserOptional = require('../middlewares/authUserOptional');
 
 //MIDDLEWARES USERS
 
