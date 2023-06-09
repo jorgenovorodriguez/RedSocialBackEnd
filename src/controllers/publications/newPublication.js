@@ -10,7 +10,7 @@ const newPublication = async (req, res, next) => {
     if (!title || !place || !description || !req.files) {
       generateError('Faltan campos', 400);
     }
-    const photoFile = await savePhoto(req.files.photoName, 500);
+    const photoFile = await savePhoto(req.files.photo, 500);
 
     // Insertamos la entrada y obtenemos los datos de la misma.
     const publication = await insertPublicationQuery(
