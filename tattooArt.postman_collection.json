@@ -9,13 +9,13 @@
 			"name": "Users",
 			"item": [
 				{
-					"name": "newUser",
+					"name": "New User",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"jorge.novo.rodriguez.93@gmail.com\",\n    \"username\": \"nameinventado\",\n    \"password\": \"123456\"\n}",
+							"raw": "{\n    \"email\": \"caarlosanchezbjj@gmail.com\",\n    \"username\": \"carlos\",\n    \"password\": \"123456\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -23,21 +23,22 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8000/users",
+							"raw": "http://localhost:8000/users/",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8000",
 							"path": [
-								"users"
+								"users",
+								""
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "validate user",
+					"name": "Validate User",
 					"request": {
 						"method": "PUT",
 						"header": [],
@@ -51,7 +52,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8000/users/validate/86f00140-7a08-4460-a544-820295b3b4d1",
+							"raw": "http://localhost:8000/users/validate/28bec1b3-4f99-4cd5-8d60-5fb35e9d0714",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -60,7 +61,7 @@
 							"path": [
 								"users",
 								"validate",
-								"86f00140-7a08-4460-a544-820295b3b4d1"
+								"28bec1b3-4f99-4cd5-8d60-5fb35e9d0714"
 							]
 						}
 					},
@@ -101,7 +102,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8000/users/1",
+							"raw": "http://localhost:8000/users/3",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -109,7 +110,7 @@
 							"port": "8000",
 							"path": [
 								"users",
-								"1"
+								"3"
 							]
 						}
 					},
@@ -122,35 +123,37 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFydGlzdGEiLCJpYXQiOjE2ODYwNTg3NDksImV4cCI6MTY4NjE0NTE0OX0.A6kGXGC9RQOdYMvBbC9ltKsOXZRwDJ_FAXa6ztcNcuk",
+								"value": "{{sam}}",
 								"description": "default",
-								"type": "default"
+								"type": "default",
+								"disabled": true
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8000/users",
+							"raw": "http://localhost:8000/user/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8000",
 							"path": [
-								"users"
+								"user",
+								"1"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Edit User Avatar",
+					"name": "Put User Avatar",
 					"request": {
 						"method": "PUT",
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFydGlzdGEiLCJpYXQiOjE2ODYwNjMxODQsImV4cCI6MTY4NjE0OTU4NH0.XmquNwTW3fFhd9h3mEkJjbU3ag17TlqOIJZvqsCeYrA",
+								"value": "{{jorge}}",
 								"type": "default",
-								"description": "default"
+								"disabled": true
 							}
 						],
 						"body": {
@@ -159,7 +162,7 @@
 								{
 									"key": "avatar",
 									"type": "file",
-									"src": ""
+									"src": "/home/hacker/Downloads/20220601_182437.jpg"
 								}
 							]
 						},
@@ -181,7 +184,7 @@
 				{
 					"name": "Send Recover Pass",
 					"request": {
-						"method": "PUT",
+						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
@@ -207,12 +210,378 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Actualize  Pass",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"recoverPassCode\": \"5FmV\",\n    \"newPass\": \"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/users/password/recover",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"users",
+								"password",
+								"recover"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reset Pass",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{sam}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"currentPass\": \"123456\",\n    \"newPass\": \"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/users/password",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"users",
+								"password"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
 		{
 			"name": "Publications",
-			"item": []
+			"item": [
+				{
+					"name": "New Publication",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{alex}}",
+								"type": "default",
+								"description": "default"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "pruebalex",
+									"type": "default"
+								},
+								{
+									"key": "place",
+									"value": "sada",
+									"type": "default"
+								},
+								{
+									"key": "description",
+									"value": "jajajajjajajajja",
+									"type": "default"
+								},
+								{
+									"key": "photoName",
+									"type": "file",
+									"src": "/home/hacker/Downloads/avatar.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8000/publications",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"publications"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Publications List",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{alex}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/publications",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"publications"
+							],
+							"query": [
+								{
+									"key": "place",
+									"value": "prueba7",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get publication",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFydGlzdGEiLCJpYXQiOjE2ODYxNjM4NjAsImV4cCI6MTY4NjI1MDI2MH0.rKLlc8Sl7NOajT4P2x6j_k7e7AVVo_Cd3_KPMWHjPVM",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/publications/1?keyword={{jorge}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"publications",
+								"1"
+							],
+							"query": [
+								{
+									"key": "keyword",
+									"value": "{{jorge}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Like",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{alex}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/publications/:publicationId/likes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"publications",
+								":publicationId",
+								"likes"
+							],
+							"variable": [
+								{
+									"key": "publicationId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Like",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{jorge}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/publications/:publicationId/likes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"publications",
+								":publicationId",
+								"likes"
+							],
+							"variable": [
+								{
+									"key": "publicationId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete publication",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{jorge}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/publications/:publicationId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"publications",
+								":publicationId"
+							],
+							"query": [
+								{
+									"key": "keyword",
+									"value": "",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "publicationId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Comment",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{alex}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"text\": \"otro mas\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/publications/:publicationId/comments",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"publications",
+								":publicationId",
+								"comments"
+							],
+							"variable": [
+								{
+									"key": "publicationId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "jorge",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "sam",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "alex",
+			"value": "",
+			"type": "default"
 		}
 	]
 }

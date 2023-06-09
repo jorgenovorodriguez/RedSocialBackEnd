@@ -1,4 +1,4 @@
-# tatooArt✅
+# tatooArt
 
 - App para tatuadores.
 
@@ -14,7 +14,7 @@
 
 - Sólo los usuarios registrados pueden acceder a los datos de contacto de los demás usuarios.
 
-## Instalar✅
+## Instalar
 
 - Crear una base de datos vacía en una instancia de MySQL local.
 
@@ -28,7 +28,7 @@
 
 - Importar la colección de Postman para poder probar los endpoints.
 
-## Base de datos✅
+## Base de datos
 
 - **`users:`** id, email, password, username, role, avatar, personalInfo, active, registrationCode, recoverPassCode, createdAt, modifiedAt.
 
@@ -40,22 +40,22 @@
 
 ## Endpoints del usuario
 
-- **POST** - [`/users`] - Crea un usuario pendiente de validar.✅
-- **PUT** - [`/users/validate/:regCode`] - Valida a un usuario recién registrado para darle acceso.✅
-- **POST** - [`/users/login`] - Logea a un usuario retornando un token.✅
-- **GET** - [`/users/:userId`] - Retorna información de un usuario concreto.✅
-- **GET** - [`/users`] - Retorna información del usuario del token. ➡️ `Token` ✅
-- **PUT** - [`/users/avatar`] - Permite actualizar el avatar del usuario. ➡️ `Token` ✅
-- **POST** - [`/users/password/recover`] - Envía al usuario un correo de recuperación de contraseña.✅
-- **PUT** - [`/users/password/recover`] - Permite actualizar la contraseña mediante la recuperación.✅
-- **PUT** - [`/users/password`] - Resetea la contraseña de un usuario.➡️ `Token` ✅
+- **POST** - [`/users`] - Crea un usuario pendiente de validar.
+- **PUT** - [`/users/validate/:regCode`] - Valida a un usuario recién registrado para darle acceso.
+- **POST** - [`/users/login`] - Logea a un usuario retornando un token.
+- **GET** - [`/users/:userId`] - Retorna información de un usuario concreto.
+- **GET** - [`/users`] - Retorna información del usuario del token. ➡️ `Token`
+- **PUT** - [`/users/avatar`] - Permite actualizar el avatar del usuario. ➡️ `Token`
+- **POST** - [`/users/password/recover`] - Envía al usuario un correo de recuperación de contraseña.
+- **PUT** - [`/users/password/recover`] - Permite actualizar la contraseña mediante la recuperación.
+- **PUT** - [`/users/password`] - Resetea la contraseña de un usuario.➡️ `Token`
 
 ## Endpoints de las publicaciones
 
-- **POST** - [`/publications`] - Crea una publicación. ➡️ `Token` ✅
-- **GET** - [`/publications`] - Retorna un listado de publicaciones en función de una palabra clave. ✅ --<> arreglo
-- **GET** - [`/publications/:publicationId`] - Retorna una publicación en concreto. ✅ --<> arreglo
-- **POST** - [`/publications/:publicationId/likes`] - Agrega un like a una publicación. ➡️ `Token` ✅
-- **DELETE** - [`/publications/:publicationId/likes`] - Retira un like a una publicación. ➡️ `Token` ✅
-- **DELETE** - [`/publications/:publicationId`] - Eliminar una publicación propia. ➡️ `Token`
-- **POST** - [`/publications/:publicationId/comments`] - Agrega un comentario a una publicación concreta. ➡️ `Token`✅
+- **POST** - [`/publications`] - Crea una publicación. ➡️ `Token`
+- **GET** - [`/publications`] - Retorna un listado de publicaciones en función de una palabra clave.
+- **GET** - [`/publications/:publicationId`] - Retorna una publicación en concreto.
+- **POST** - [`/publications/:publicationId/likes`] - Agrega un like a una publicación. ➡️ `Token`
+- **DELETE** - [`/publications/:publicationId/likes`] - Retira un like a una publicación. ➡️ `Token`
+- **POST** - [`/publications/:publicationId/comments`] - Agrega un comentario a una publicación concreta. ➡️ `Token`
+- **DELETE** - [`/publications/:publicationId`] - Eliminar una publicación propia junto con sus likes y comentarios. ➡️ `Token`

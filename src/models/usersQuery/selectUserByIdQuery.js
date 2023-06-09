@@ -1,24 +1,20 @@
-const getDB = require("../../db/getDB");
-
+const getDB = require('../../db/getDB');
 
 const selectUsersByIdQuery = async (userId) => {
+  let connection;
 
-    let connection;
+  try {
+    connection = await getDB();
 
-    try {
+    const [users] = await connection.query(
+      `SELECT id, username, email, role, avatar, personalInfo, createdAt FROM users WHERE id = ?`,
+      [userId]
+    );
 
-        connection = await getDB();
-
-        const [users] = await connection.query(
-            `SELECT id, username, email, role, avatar, createdAt FROM users WHERE id = ?`,
-            [userId]
-        );
-
-        return users[0];
-
-    } finally {
-        if (connection) connection.release();
-    }
+    return users[0];
+  } finally {
+    if (connection) connection.release();
+  }
 };
 
 module.exports = selectUsersByIdQuery;

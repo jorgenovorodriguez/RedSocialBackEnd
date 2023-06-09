@@ -1,4 +1,5 @@
 const selectUsersByIdQuery = require('../../models/usersQuery/selectUserByIdQuery');
+const authUser = require('../../middlewares/authUsers');
 const { generateError } = require('../../services/errors');
 
 const getUsers = async (req, res, next) => {
@@ -11,7 +12,13 @@ const getUsers = async (req, res, next) => {
       generateError('Usuario no encontrado', 404);
     }
 
-    delete user.email;
+    // Verificar si el usuario está autenticado
+    const autoritation = req.user !== undefined;
+
+    // Si el usuario no está autenticado, eliminar el campo de correo electrónico
+    if (!autoritation) {
+      delete user.email;
+    }
 
     res.send({
       status: 'ok',
