@@ -44,11 +44,13 @@
 - **PUT** - [`/users/validate/:regCode`] - Valida a un usuario recién registrado para darle acceso.
 - **POST** - [`/users/login`] - Logea a un usuario retornando un token.
 - **GET** - [`/users/:userId`] - Retorna información de un usuario concreto.
-- **GET** - [`/users`] - Retorna información del usuario del token. ➡️ `Token`
+- **GET** - [`/users/onwer`] - Retorna información del usuario del token. ➡️ `Token`
+- **GET** - [`/users`] - Retorna todos los usuarios pudiendo esta filtrar por query params.
 - **PUT** - [`/users/avatar`] - Permite actualizar el avatar del usuario. ➡️ `Token`
 - **POST** - [`/users/password/recover`] - Envía al usuario un correo de recuperación de contraseña.
 - **PUT** - [`/users/password/recover`] - Permite actualizar la contraseña mediante la recuperación.
 - **PUT** - [`/users/password`] - Resetea la contraseña de un usuario.➡️ `Token`
+- **DELETE** - ['/users/:userId`] - Elimina a un usuario en concreto. -> `Token`
 
 ## Endpoints de las publicaciones
 
@@ -59,3 +61,4 @@
 - **DELETE** - [`/publications/:publicationId/likes`] - Retira un like a una publicación. ➡️ `Token`
 - **POST** - [`/publications/:publicationId/comments`] - Agrega un comentario a una publicación concreta. ➡️ `Token`
 - **DELETE** - [`/publications/:publicationId`] - Eliminar una publicación propia junto con sus likes y comentarios. ➡️ `Token`
+- **DELETE** - [`/publications/:publicationId/comments/:commentId`] - Elimina un comentario en concreto. -> `Token`

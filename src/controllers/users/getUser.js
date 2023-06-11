@@ -1,5 +1,4 @@
 const selectUsersByIdQuery = require('../../models/usersQuery/selectUserByIdQuery');
-const authUser = require('../../middlewares/authUsers');
 const { generateError } = require('../../services/errors');
 
 const getUsers = async (req, res, next) => {

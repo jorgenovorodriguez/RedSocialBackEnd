@@ -22,7 +22,7 @@ const main = async () => {
                 id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
                 email VARCHAR(100) UNIQUE NOT NULL,
                 password VARCHAR(100) NOT NULL,
-                username VARCHAR(40) UNIQUE NOT NULL,
+                username VARCHAR(100) UNIQUE NOT NULL,
                 role ENUM('artista', 'estudio') DEFAULT 'artista',
                 avatar VARCHAR(100),
                 personalInfo VARCHAR(300),

@@ -18,6 +18,8 @@ const {
   addComent,
 
   deletePublication,
+
+  deleteComments,
 } = require('../controllers/publications');
 
 //MIDDLEWARES PUBLICATIONS
@@ -48,5 +50,7 @@ route.delete('/publications/:publicationId', authUser, userExists, deletePublica
 
 //Agrega un comentario a una publicación concreta.
 route.post('/publications/:publicationId/comments', authUser, userExists, addComent);
+
+route.delete('/publications/:publicationId/comments/:commentId', authUser, userExists, deleteComments)
 
 module.exports = route;
