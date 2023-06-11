@@ -12,7 +12,6 @@ const editUsersPass = async (req, res, next) => {
         if (newPass !== confirmPass) {
             generateError('Las contraseñas no coinciden', 401);
         }
-        console.log(currentPass, newPass, confirmPass);
 
         await upDateUsersPassQuery(currentPass, newPass, req.user.id);
 
