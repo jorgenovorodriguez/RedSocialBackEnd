@@ -5,6 +5,7 @@ const deleteLike = require('./deleteLike');
 const getPublication = require('./getPublication');
 const addComent = require('./addComent');
 const deletePublication = require('./deletePublication');
+const deleteComments = require('./deleteComment');
 
 module.exports = {
   newPublication,
@@ -20,4 +21,6 @@ module.exports = {
   addComent,
 
   deletePublication,
+
+  deleteComments,
 };

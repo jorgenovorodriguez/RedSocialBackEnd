@@ -13,6 +13,7 @@ const {
   editUsersRecoverPass,
   editUsersPass,
   editUserAvatar,
+  deleteUser,
 } = require('../controllers/users');
 const authUserOptional = require('../middlewares/authUserOptional');
 
@@ -44,5 +45,7 @@ route.put('/users/password/recover', editUsersRecoverPass);
 
 //Resetea la contraseña de un usuario.
 route.put('/users/password', authUser, userExists, editUsersPass);
+
+route.delete('/users/:userId', authUser, userExists, deleteUser)
 
 module.exports = route;
