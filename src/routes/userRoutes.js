@@ -14,6 +14,7 @@ const {
   editUsersPass,
   editUserAvatar,
   deleteUser,
+  getAllUsers,
 } = require('../controllers/users');
 const authUserOptional = require('../middlewares/authUserOptional');
 
@@ -31,8 +32,10 @@ route.post('/users/login', loginUsers);
 //Retorna información de un usuario concreto.
 route.get('/users/:userId', authUserOptional, getUser);
 
+route.get('/users', authUserOptional, getAllUsers);
+
 //Retorna información del usuario del token.
-route.get('/users', authUser, userExists, getOwnUser);
+route.get('/users/onwer', authUser, userExists, getOwnUser);
 
 //Permite actualizar el avatar del usuario.
 route.put('/users/avatar', authUser, userExists, editUserAvatar);

@@ -6,11 +6,15 @@ const editUsersRecoverPass = async (req, res, next) => {
 
     try {
 
-        const { recoverPassCode, newPass } = req.body;
+        const { recoverPassCode, newPass, confirmPass } = req.body;
 
-        if (!recoverPassCode || !newPass) {
+        if (!recoverPassCode || !newPass || !confirmPass) {
 
             generateError('faltan campos por rellenar', 400);
+        }
+
+        if (newPass !== confirmPass) {
+            generateError('Las contraseñas no coinciden', 401);
         }
 
         await upDateUsersRegCodeFinallyQuery(recoverPassCode, newPass)

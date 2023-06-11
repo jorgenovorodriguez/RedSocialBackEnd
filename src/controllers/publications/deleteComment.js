@@ -1,5 +1,6 @@
 const deleteCommentByIdQuery = require('../../models/publicationsQuery/deleteComentsQuery');
 const selectPublicationtByIdQuery = require('../../models/publicationsQuery/selectPublicationByIdQuery');
+const { generateError } = require('../../services/errors');
 
 
 const deleteComments = async (req, res, next) => {

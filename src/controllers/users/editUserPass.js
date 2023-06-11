@@ -1,14 +1,18 @@
-const generateError = require("../../services/errors");
-
+const { generateError } = require("../../services/errors");
 const upDateUsersPassQuery = require('../../models/usersQuery/upDateUsersPassQuery');
 
 const editUsersPass = async (req, res, next) => {
     try {
-        const { currentPass, newPass } = req.body;
+        const { currentPass, newPass, confirmPass } = req.body;
 
-        if (!currentPass || !newPass) {
+        if (!currentPass || !newPass || !confirmPass) {
             generateError('Faltan campos', 400);
         }
+
+        if (newPass !== confirmPass) {
+            generateError('Las contraseñas no coinciden', 401);
+        }
+        console.log(currentPass, newPass, confirmPass);
 
         await upDateUsersPassQuery(currentPass, newPass, req.user.id);
 

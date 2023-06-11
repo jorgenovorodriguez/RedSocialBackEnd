@@ -1,6 +1,6 @@
 const getDB = require('../../db/getDB');
 const bcrypt = require('bcrypt');
-const generateError = require('../../services/errors');
+const { generateError } = require('../../services/errors');
 
 const upDateUsersPassQuery = async (currentPass, newPass, userId) => {
     let connection;
@@ -13,7 +13,7 @@ const upDateUsersPassQuery = async (currentPass, newPass, userId) => {
             [userId]
         );
 
-        const validPass = bcrypt.compare(currentPass, users[0].password);
+        const validPass = await bcrypt.compare(currentPass, users[0].password);
 
         if (!validPass) {
             generateError('Contraseña incorrecta', 401);

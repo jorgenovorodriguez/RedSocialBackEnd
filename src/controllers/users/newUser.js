@@ -5,22 +5,26 @@ const sendMail = require('../../services/sendMail');
 
 const newUser = async (req, res, next) => {
   try {
-    const { email, username, password } = req.body;
+    const { email, username, password, personalInfo } = req.body;
     if (!email || !username || !password) {
       generateError('Faltan campos', 400);
     }
 
     const registrationCode = uuid();
 
-    await insertUserQuery(email, username, password, registrationCode);
+    await insertUserQuery(email, username, password, registrationCode, personalInfo);
 
     const emailSubject = 'Activa tu usuario en tattooArt';
 
     const emailBody = `
 
             ¡Bienvenid@ ${username} a tattoArt!
+            
+            Por favor verifica tu usuario a travéz del siguiente enlace:
+           
+            <button><a href="http://localhost:8000/users/validate/${registrationCode}">Activar cuenta</a></button>
 
-            Por favor, verifica tu usuario a través del http://localhost:8000/users/validate/${registrationCode}.
+            Este es un email autogenerado, no responda ha este email.
         `;
 
     await sendMail(email, emailSubject, emailBody);
