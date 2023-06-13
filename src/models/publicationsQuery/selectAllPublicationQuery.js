@@ -89,12 +89,14 @@ const selectAllPublicationQuery = async (
       }
 
       if (commentId) {
-        publications.find((pub) => pub.id === publicationId).comments.push({
-          id: commentId,
-          text: commentText,
-          commenter,
-          commenterAvatar,
-        });
+        publications
+          .find((pub) => pub.id === publicationId)
+          .comments.push({
+            id: commentId,
+            text: commentText,
+            commenter,
+            commenterAvatar,
+          });
       }
     });
 

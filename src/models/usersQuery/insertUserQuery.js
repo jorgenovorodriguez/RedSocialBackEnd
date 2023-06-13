@@ -4,8 +4,13 @@ const bcrypt = require('bcrypt');
 
 const { generateError } = require('../../services/errors');
 
-const insertUserQuery = async (email, username, password, registrationCode, personalInfo) => {
-
+const insertUserQuery = async (
+  email,
+  username,
+  password,
+  registrationCode,
+  personalInfo
+) => {
   let connection;
 
   try {

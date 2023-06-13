@@ -41,16 +41,31 @@ route.delete(
   '/publications/:publicationId/likes',
   authUser,
   userExists,
-  deleteLike,
-
+  deleteLike
 );
 
-//Eliminar una publicación en concreto.
-route.delete('/publications/:publicationId', authUser, userExists, deletePublication);
+//Eliminar una publicación completa junto con sus likes y comentarios.
+route.delete(
+  '/publications/:publicationId',
+  authUser,
+  userExists,
+  deletePublication
+);
 
 //Agrega un comentario a una publicación concreta.
-route.post('/publications/:publicationId/comments', authUser, userExists, addComent);
+route.post(
+  '/publications/:publicationId/comments',
+  authUser,
+  userExists,
+  addComent
+);
 
-route.delete('/publications/:publicationId/comments/:commentId', authUser, userExists, deleteComments)
+//Elimina un comentario de una publicación concreta
+route.delete(
+  '/publications/:publicationId/comments/:commentId',
+  authUser,
+  userExists,
+  deleteComments
+);
 
 module.exports = route;
