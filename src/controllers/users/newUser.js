@@ -12,19 +12,25 @@ const newUser = async (req, res, next) => {
 
     const registrationCode = uuid();
 
-    await insertUserQuery(email, username, password, registrationCode, personalInfo);
+    await insertUserQuery(
+      email,
+      username,
+      password,
+      registrationCode,
+      personalInfo
+    );
 
-    const emailSubject = 'Activa tu usuario en tattooArt';
+    const emailSubject = 'Activación de usuario en tattooArt';
 
     const emailBody = `
 
             ¡Bienvenid@ ${username} a tattoArt!
             
-            Por favor verifica tu usuario a travéz del siguiente enlace:
+            Puedes activar tu usuario a través del siguiente enlace:
            
             <button><a href="http://localhost:8000/users/validate/${registrationCode}">Activar cuenta</a></button>
 
-            Este es un email autogenerado, no responda ha este email.
+            Este es un email autogenerado, por favor no responda a este email.
         `;
 
     await sendMail(email, emailSubject, emailBody);

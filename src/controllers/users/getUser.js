@@ -14,10 +14,7 @@ const getUsers = async (req, res, next) => {
     // Verificar si el usuario está autenticado
     const autoritation = req.user !== undefined;
 
-    // Si el usuario no está autenticado, eliminar el campo de correo electrónico
-    if (!autoritation) {
-      delete user.email;
-    }
+    delete user.email;
 
     res.send({
       status: 'ok',

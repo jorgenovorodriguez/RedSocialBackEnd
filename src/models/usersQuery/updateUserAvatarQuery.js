@@ -8,8 +8,7 @@ const updateUserAvatarQuery = async (avatar, userId) => {
 
     await connection.query(
       `UPDATE users SET avatar = ?, modifiedAt = ? WHERE id = ?`,
-      [avatar, new Date(), userId],
-
+      [avatar, new Date(), userId]
     );
   } finally {
     if (connection) connection.release();

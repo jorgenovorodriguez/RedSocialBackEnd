@@ -2,26 +2,29 @@ const getDB = require('../../db/getDB');
 const { generateError } = require('../../services/errors');
 
 const selectAllUsersQuery = async (keyword = '') => {
-    let connection;
+  let connection;
 
-    try {
-        connection = await getDB();
+  try {
+    connection = await getDB();
 
-        const [users] = await connection.query(`
+    const [users] = await connection.query(
+      `
       SELECT id, username, email, role, avatar
       FROM users 
       WHERE userName LIKE ? OR personalInfo LIKE ?
-    `, [`%${keyword}%`, `%${keyword}%`]);
+    `,
+      [`%${keyword}%`, `%${keyword}%`]
+    );
 
-        // Si no hay usuarios, lanzamos un error.
-        if (users.length < 1) {
-            generateError('No hay usuarios', 404);
-        }
-
-        return users;
-    } finally {
-        if (connection) connection.release();
+    // Si no hay usuarios, lanzamos un error.
+    if (users.length < 1) {
+      generateError('No hay usuarios', 404);
     }
+
+    return users;
+  } finally {
+    if (connection) connection.release();
+  }
 };
 
 module.exports = selectAllUsersQuery;
