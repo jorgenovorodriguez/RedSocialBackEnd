@@ -8,14 +8,13 @@ const deleteLikeQuery = async (publicationId, userId) => {
   try {
     connection = await getDB();
 
-    // Comprobamos si el usuario ya ha dado like al tweet.
     const [likes] = await connection.query(
       `SELECT id FROM likes WHERE publicationId = ? AND userId = ?`,
       [publicationId, userId]
     );
 
     if (likes.length < 1) {
-      generateError('Like no encontrado', 404);
+      generateError('Aún no hay ningún like', 404);
     }
 
     await connection.query(

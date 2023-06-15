@@ -1,15 +1,11 @@
 const selectUserByIdQuery = require('../../models/usersQuery/selectUserByIdQuery');
 const updateUserAvatarQuery = require('../../models/usersQuery/updateUserAvatarQuery');
-
 const { generateError } = require('../../services/errors');
 const savePhoto = require('../../services/savePhoto');
 const deletePhoto = require('../../services/deletePhoto');
-const colors = require('colors');
 
 const editUserAvatar = async (req, res, next) => {
   try {
-    // Si falta el avatar
-
     if (!req.files?.avatar) {
       generateError('Faltan campos', 400);
     }

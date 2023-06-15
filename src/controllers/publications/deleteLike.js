@@ -2,7 +2,6 @@ const deleteLikeQuery = require('../../models/publicationsQuery/deleteLikeQuery'
 
 const deleteLike = async (req, res, next) => {
   try {
-    // Obtenemos por destructuring el path param publicationId.
     const { publicationId } = req.params;
 
     await deleteLikeQuery(publicationId, req.user.id);

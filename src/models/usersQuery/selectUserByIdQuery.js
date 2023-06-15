@@ -7,33 +7,29 @@ const selectUsersByIdQuery = async (userId) => {
     connection = await getDB();
 
     const [users] = await connection.query(
-      `SELECT
-      u.id AS userId,
-      u.email,
-      u.username,
-      u.role,
-      u.avatar,
-      u.personalInfo,
-      u.active,
-      u.createdAt AS userCreatedAt,
-      JSON_ARRAYAGG(
-        JSON_OBJECT(
-          'id', p.id,
-          'title', p.title,
-          'photoName', p.photoName,
-          'place', p.place,
-          'description', p.description,
-          'createdAt', p.createdAt
-        )
-      ) AS publications
-    FROM
-      users u
-    LEFT JOIN
-      publications p ON u.id = p.userId
-    WHERE
-      u.id = ?
-    GROUP BY
-      u.id`,
+      ` SELECT
+            u.id AS userId,
+            u.email,
+            u.username,
+            u.role,
+            u.avatar,
+            u.personalInfo,
+            u.active,
+            u.createdAt AS userCreatedAt,
+            JSON_ARRAYAGG(
+              JSON_OBJECT(
+                'id', p.id,
+                'title', p.title,
+                'photoName', p.photoName,
+                'place', p.place,
+                'description', p.description,
+                'createdAt', p.createdAt
+              )
+            ) AS publications
+          FROM users u
+          LEFT JOIN publications p ON u.id = p.userId
+          WHERE u.id = ?
+          GROUP BY u.id`,
       [userId]
     );
 

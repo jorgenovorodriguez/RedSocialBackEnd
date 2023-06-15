@@ -12,7 +12,6 @@ const newPublication = async (req, res, next) => {
     }
     const photoFile = await savePhoto(req.files.photo, 500);
 
-    // Insertamos la entrada y obtenemos los datos de la misma.
     const publication = await insertPublicationQuery(
       title,
       photoFile,

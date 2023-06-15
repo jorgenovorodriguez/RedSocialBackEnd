@@ -3,29 +3,29 @@ const selectPublicationtByIdQuery = require('../../models/publicationsQuery/sele
 const { generateError } = require('../../services/errors');
 
 const addComent = async (req, res, next) => {
-    try {
-        const { publicationId } = req.params;
+  try {
+    const { publicationId } = req.params;
 
-        const { text } = req.body;
+    const { text } = req.body;
 
-        if (!text) {
-            generateError('Falta campos por rellenar', 400);
-        }
-
-        const publication = await selectPublicationtByIdQuery(publicationId, req.user.id);
-
-        const coment = await insertComentsQuery(text, publicationId, req.user.id)
-
-        res.send({
-            status: 'ok',
-            data: {
-                publicationId: +publicationId,
-                coment,
-            }
-        });
-    } catch (err) {
-        next(err);
+    if (!text) {
+      generateError('Faltan campos', 400);
     }
+
+    await selectPublicationtByIdQuery(publicationId, req.user.id);
+
+    const coment = await insertComentsQuery(text, publicationId, req.user.id);
+
+    res.send({
+      status: 'ok',
+      data: {
+        publicationId: +publicationId,
+        coment,
+      },
+    });
+  } catch (err) {
+    next(err);
+  }
 };
 
 module.exports = addComent;

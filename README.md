@@ -16,13 +16,11 @@
 
 ## Instalar
 
-- Crear una base de datos vacía en una instancia de MySQL local.
-
 - Instalar las dependencias mediante el comando `npm install` o `npm i`.
 
 - Guardar el archivo `.env.example` como `.env` y cubrir los datos necesarios.
 
-- Ejecutar `npm run initDB` para crear las tablas necesarias en la base de datos anteriormente creada.
+- Ejecutar `npm run initDB` para crear la base de datos necesaria con todas sus tablas.
 
 - Ejecutar `npm run dev` o `npm start` para lanzar el servidor.
 
@@ -44,7 +42,7 @@
 - **PUT** - [`/users/validate/:regCode`] - Valida a un usuario recién registrado para darle acceso.
 - **POST** - [`/users/login`] - Logea a un usuario retornando un token.
 - **GET** - [`/users/:userId`] - Retorna información de un usuario concreto.
-- **GET** - [`/users/own`] - Retorna información del usuario del token. ➡️ `Token`
+- **GET** - [`/users/owner`] - Retorna información del usuario del token. ➡️ `Token`
 - **GET** - [`/users`] - Retorna un listado de usuarios y nos permite filtrar la búsqueda.
 - **PUT** - [`/users/avatar`] - Permite actualizar el avatar del usuario. ➡️ `Token`
 - **POST** - [`/users/password/recover`] - Envía al usuario un correo de recuperación de contraseña.

@@ -8,17 +8,17 @@ const loginUsers = async (req, res, next) => {
 
   try {
     if (!email) {
-      generateError('falta el email', 400);
+      generateError('Debe introducir un email', 400);
     }
     if (!password) {
-      generateError('Falta contraseña', 400);
+      generateError('Debe introducir una contraseña', 400);
     }
 
     const user = await selectUserEmailQuery(email);
 
-    const valitedPass = await bcrypt.compare(password, user.password);
+    const validationPass = await bcrypt.compare(password, user.password);
 
-    if (!valitedPass) {
+    if (!validationPass) {
       generateError('Contraseña incorrecta', 401);
     }
 
