@@ -43,7 +43,6 @@ const selectAllPublicationQuery = async (
       [userId, userId, `%${keyword}%`, `%${keyword}%`, `%${keyword}%`]
     );
 
-    // Si no hay publicaciones, lanzamos un error.
     if (results.length < 1) {
       generateError('No hay resultados', 404);
     }
