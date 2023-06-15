@@ -11,9 +11,6 @@ const getUsers = async (req, res, next) => {
       generateError('Usuario no encontrado', 404);
     }
 
-    // Verificar si el usuario está autenticado
-    const autoritation = req.user !== undefined;
-
     delete user.email;
 
     res.send({

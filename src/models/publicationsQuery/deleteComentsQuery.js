@@ -6,7 +6,6 @@ const deleteCommentByIdQuery = async (commentId, publicationId) => {
   try {
     connection = await getDB();
 
-    // Verificar si el comentario existe
     const [comment] = await connection.query(
       'SELECT * FROM comments WHERE publicationId = ? AND id = ?',
       [publicationId, commentId]
@@ -16,7 +15,6 @@ const deleteCommentByIdQuery = async (commentId, publicationId) => {
       throw new Error('El comentario no existe');
     }
 
-    // Eliminar el comentario
     await connection.query(
       'DELETE FROM comments WHERE id = ? AND publicationId = ?',
       [commentId, publicationId]

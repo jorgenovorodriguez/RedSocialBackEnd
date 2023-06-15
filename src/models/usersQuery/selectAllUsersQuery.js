@@ -9,10 +9,15 @@ const selectAllUsersQuery = async (keyword = '') => {
 
     const [users] = await connection.query(
       `
-      SELECT id, username, email, role, avatar
-      FROM users 
-      WHERE userName LIKE ? OR personalInfo LIKE ?
-    `,
+          SELECT 
+              id, 
+              username, 
+              email, 
+              role, 
+              avatar
+          FROM users 
+          WHERE userName LIKE ? OR personalInfo LIKE ?
+      `,
       [`%${keyword}%`, `%${keyword}%`]
     );
 

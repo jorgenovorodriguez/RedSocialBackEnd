@@ -5,7 +5,7 @@ const colors = require('colors');
 const fileUpload = require('express-fileupload');
 const cors = require('cors');
 
-const { errorStandard, notFound, } = require('./src/services/errors');
+const { errorStandard, notFound } = require('./src/services/errors');
 const userRoutes = require('./src/routes/userRoutes');
 const publicationRoutes = require('./src/routes/publicationRoutes');
 
@@ -19,12 +19,12 @@ app.use(fileUpload());
 
 app.use(cors());
 
-app.use(express.static(process.env.UPLOADS_DIR))
+app.use(express.static(process.env.UPLOADS_DIR));
 
-//MIDDEWARE USERS
+//MIDDLEWARE USERS
 app.use(userRoutes);
 
-//MIDDEWARE PUBLICACIONES
+//MIDDLEWARE PUBLICACIONES
 app.use(publicationRoutes);
 
 //******************//

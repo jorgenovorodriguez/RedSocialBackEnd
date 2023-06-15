@@ -11,7 +11,6 @@ const selectAllPublicationQuery = async (
   try {
     connection = await getDB();
 
-    // Revisar con detenimiento este punto, por si influye en el funcionamiento de la función
     date = date.toUpperCase() === 'ASC' ? 'ASC' : 'DESC';
 
     const [results] = await connection.query(

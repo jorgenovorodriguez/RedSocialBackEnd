@@ -15,7 +15,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"jorge.novo.rodriguez.93@gmail.com\",\n    \"username\": \"jorge93\",\n    \"password\": \"123456\",\n    \"personalInfo\": \"Hola me llamo jorge y soy un tatuador de estilo ignorant\"\n}",
+							"raw": "{\n    \"email\": \"jorge.novo.rodriguez.93@gmail.com\",\n    \"username\": \"Jorge\",\n    \"password\": \"123456\",\n    \"personalInfo\": \"Hola me llamo Jorge y soy un tatuador de estilo ignorant\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -52,7 +52,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8000/users/validate/9ba36262-420b-4051-8b68-227d3588211e",
+							"raw": "http://localhost:8000/users/validate/754ae05b-78b8-4623-9943-b65c84b30fb9",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -61,7 +61,7 @@
 							"path": [
 								"users",
 								"validate",
-								"9ba36262-420b-4051-8b68-227d3588211e"
+								"754ae05b-78b8-4623-9943-b65c84b30fb9"
 							]
 						}
 					},
@@ -108,7 +108,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8000/users/1",
+							"raw": "http://localhost:8000/users/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -116,7 +116,7 @@
 							"port": "8000",
 							"path": [
 								"users",
-								"1"
+								"2"
 							]
 						}
 					},
@@ -155,7 +155,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8000/users",
+							"raw": "http://localhost:8000/users?keyword=Jorge",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -163,6 +163,12 @@
 							"port": "8000",
 							"path": [
 								"users"
+							],
+							"query": [
+								{
+									"key": "keyword",
+									"value": "Jorge"
+								}
 							]
 						}
 					},
@@ -241,7 +247,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"recoverPassCode\": \"Ng1d\",\n    \"newPass\": \"654321\"\n}",
+							"raw": "{\n    \"recoverPassCode\": \"lD8I\",\n    \"newPass\": \"654321\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -311,7 +317,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8000/users/3",
+							"raw": "http://localhost:8000/users/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -319,7 +325,7 @@
 							"port": "8000",
 							"path": [
 								"users",
-								"3"
+								"2"
 							]
 						}
 					},
@@ -347,17 +353,17 @@
 							"formdata": [
 								{
 									"key": "title",
-									"value": "prueba3",
+									"value": "prueba2",
 									"type": "default"
 								},
 								{
 									"key": "place",
-									"value": "sada",
+									"value": "A Coruña",
 									"type": "default"
 								},
 								{
 									"key": "description",
-									"value": "jajajajjajajajja",
+									"value": "Hack a Boss es la pera y lo sigue siendo",
 									"type": "default"
 								},
 								{
@@ -415,8 +421,7 @@
 							{
 								"key": "Authorization",
 								"value": "{{jorge}}",
-								"type": "default",
-								"disabled": true
+								"type": "default"
 							}
 						],
 						"url": {
@@ -519,7 +524,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"text\": \" y otro mas\"\n}",
+							"raw": "{\n    \"text\": \"Yo también\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -588,7 +593,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8000/publications/1",
+							"raw": "http://localhost:8000/publications/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -596,7 +601,7 @@
 							"port": "8000",
 							"path": [
 								"publications",
-								"1"
+								"2"
 							],
 							"query": [
 								{

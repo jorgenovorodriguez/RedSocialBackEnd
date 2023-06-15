@@ -13,12 +13,10 @@ const userExists = async (req, res, next) => {
       [req.user.id]
     );
 
-    // Lanzamos un error si el usuario no existe.
     if (users.length < 1) {
       generateError('Usuario no encontrado', 404);
     }
 
-    // Pasamos el control a la siguiente función controladora.
     next();
   } catch (err) {
     next(err);

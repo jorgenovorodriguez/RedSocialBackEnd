@@ -10,22 +10,22 @@ const selectPublicationtByIdQuery = async (publicationId, userId = 0) => {
     const [publications] = await connection.query(
       `
         SELECT
-          P.id AS publicationId,
-          P.title,
-          P.place,
-          P.userId,
-          P.description,
-          U.username AS author,
-          P.userId AS authorId,
-          P.photoName,
-          P.userId = ? AS owner,
-          P.createdAt,
-          COUNT(L.id) AS likes,
-          BIT_OR(L.userId = ?) AS likedByMe,
-          C.id AS commentId,
-          C.text AS commentText,
-          UC.username AS commenter,
-          UC.avatar AS commenterAvatar
+            P.id AS publicationId,
+            P.title,
+            P.place,
+            P.userId,
+            P.description,
+            U.username AS author,
+            P.userId AS authorId,
+            P.photoName,
+            P.userId = ? AS owner,
+            P.createdAt,
+            COUNT(L.id) AS likes,
+            BIT_OR(L.userId = ?) AS likedByMe,
+            C.id AS commentId,
+            C.text AS commentText,
+            UC.username AS commenter,
+            UC.avatar AS commenterAvatar
         FROM publications P
         INNER JOIN users U ON P.userId = U.id
         LEFT JOIN likes L ON P.id = L.publicationId
