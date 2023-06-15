@@ -1,5 +1,6 @@
 const insertComentsQuery = require('../../models/publicationsQuery/insertComentsQuery');
 const selectPublicationtByIdQuery = require('../../models/publicationsQuery/selectPublicationByIdQuery');
+const { textCommentSchema } = require('../../schemas');
 const { generateError } = require('../../services/errors');
 
 const addComent = async (req, res, next) => {
@@ -11,6 +12,8 @@ const addComent = async (req, res, next) => {
         if (!text) {
             generateError('Falta campos por rellenar', 400);
         }
+
+        await textCommentSchema.validateAsync({ text });
 
         const publication = await selectPublicationtByIdQuery(publicationId, req.user.id);
 

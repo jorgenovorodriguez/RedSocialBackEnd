@@ -2,6 +2,7 @@ const selectUserEmailQuery = require('../../models/usersQuery/selectUserEmailQue
 const { generateError } = require('../../services/errors');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const { emailUserSchema, passwordUserSchema } = require('../../schemas/index')
 
 const loginUsers = async (req, res, next) => {
   const { email, password } = req.body;
@@ -13,6 +14,10 @@ const loginUsers = async (req, res, next) => {
     if (!password) {
       generateError('Falta contraseña', 400);
     }
+
+    await emailUserSchema.validateAsync({ email });
+
+    await passwordUserSchema.validateAsync({ password });
 
     const user = await selectUserEmailQuery(email);
 

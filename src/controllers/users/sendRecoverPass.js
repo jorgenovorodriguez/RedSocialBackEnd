@@ -1,6 +1,6 @@
 const selectUserByEmailQuery = require('../../models/usersQuery/selectUserEmailQuery');
 const updateUserRecoverPassQuery = require('../../models/usersQuery/updateUserRecoverPassQuery');
-
+const { emailUserSchema } = require('../../schemas/emailUserSchema');
 const randomstring = require('randomstring');
 
 const { generateError } = require('../../services/errors');
@@ -13,6 +13,8 @@ const sendRecoverPass = async (req, res, next) => {
     if (!email) {
       generateError('Faltan campos', 400);
     }
+
+    await emailUserSchema.validateAsync({ email });
 
     // Comprobamos que exista un usuario con ese email.
     await selectUserByEmailQuery(email);

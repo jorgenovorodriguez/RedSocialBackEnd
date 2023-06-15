@@ -2,6 +2,7 @@ const insertUserQuery = require('../../models/usersQuery/insertUserQuery');
 const { v4: uuid } = require('uuid');
 const { generateError } = require('../../services/errors');
 const sendMail = require('../../services/sendMail');
+const { emailUserSchema, nameUserSchema, passwordUserSchema, personalInfoSchema } = require('../../schemas/index');
 
 const newUser = async (req, res, next) => {
   try {
@@ -9,6 +10,15 @@ const newUser = async (req, res, next) => {
     if (!email || !username || !password) {
       generateError('Faltan campos', 400);
     }
+
+    await emailUserSchema.validateAsync({ email });
+
+    await nameUserSchema.validateAsync({ username });
+
+    await passwordUserSchema.validateAsync({ password });
+
+    await personalInfoSchema.validateAsync({ personalInfo });
+
 
     const registrationCode = uuid();
 

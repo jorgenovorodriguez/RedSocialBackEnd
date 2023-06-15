@@ -1,5 +1,6 @@
 const { generateError } = require('../../services/errors');
 const upDateUsersRegCodeFinallyQuery = require('../../models/usersQuery/upDateUsersRegCodeFinallyQuery');
+const { newPasswordUserSchema } = require('../../schemas/index');
 
 const editUsersRecoverPass = async (req, res, next) => {
   try {
@@ -8,6 +9,8 @@ const editUsersRecoverPass = async (req, res, next) => {
     if (!recoverPassCode || !newPass) {
       generateError('faltan campos por rellenar', 400);
     }
+
+    await newPasswordUserSchema.validateAsync({ newPass })
 
     await upDateUsersRegCodeFinallyQuery(recoverPassCode, newPass);
 
