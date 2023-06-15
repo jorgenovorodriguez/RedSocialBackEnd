@@ -48,7 +48,7 @@
 - **POST** - [`/users/password/recover`] - Envía al usuario un correo de recuperación de contraseña.
 - **PUT** - [`/users/password/recover`] - Permite actualizar la contraseña mediante la recuperación.
 - **PUT** - [`/users/password`] - Resetea la contraseña de un usuario.➡️ `Token`
-- **DELETE** - ['/users/:userId`] - Elimina a un usuario en concreto. -> `Token`
+- **DELETE** - [`/users/:userId`] - Elimina a un usuario en concreto. -> `Token`
 
 ## Endpoints de las publicaciones
 
