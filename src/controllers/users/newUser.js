@@ -4,45 +4,42 @@ const { generateError } = require('../../services/errors');
 const sendMail = require('../../services/sendMail');
 
 const newUser = async (req, res, next) => {
-  try {
-    const { email, username, password, personalInfo } = req.body;
-    if (!email || !username || !password) {
-      generateError('Faltan campos', 400);
-    }
+    try {
+        const { email, username, password, personalInfo } = req.body;
+        if (!email || !username || !password) {
+            generateError('Faltan campos', 400);
+        }
 
-    const registrationCode = uuid();
+        const registrationCode = uuid();
 
-    await insertUserQuery(
-      email,
-      username,
-      password,
-      registrationCode,
-      personalInfo
-    );
+        await insertUserQuery(
+            email,
+            username,
+            password,
+            registrationCode,
+            personalInfo
+        );
 
-    const emailSubject = 'Activación de usuario en tattooArt';
+        const emailSubject = 'Activación de usuario en tattooArt';
 
-    const emailBody = `
+        const emailBody = `
 
-            ¡Bienvenid@ ${username} a tattoArt!
+            ¡Hola ${username} bienvenid@ a tattoArt!
             
-            Puedes activar tu usuario a través del siguiente enlace:
-           
-            <button><a href="http://localhost:8000/users/validate/${registrationCode}">Activar cuenta</a></button>
-
-            Este es un email autogenerado, por favor no responda a este email.
+            Puedes activar tu usuario introduciendo el siguiente código en nuestra web: ${registrationCode}
         `;
 
-    await sendMail(email, emailSubject, emailBody);
+        await sendMail(email, emailSubject, emailBody);
 
-    res.send({
-      status: 'ok',
-      message:
-        'Usuario creado, por favor revise su email para completar la activación de su cuenta',
-    });
-  } catch (err) {
-    next(err);
-  }
+        res.send({
+            status: 'ok',
+            data: registrationCode,
+            message:
+                'Usuario creado, por favor revise su email para completar la activación de su cuenta',
+        });
+    } catch (err) {
+        next(err);
+    }
 };
 
 module.exports = newUser;
