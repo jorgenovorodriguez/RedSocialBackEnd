@@ -16,7 +16,7 @@ const getDB = async () => {
 
       db.query(`CREATE DATABASE IF NOT EXISTS ${MYSQL_DB}`);
 
-      db.query('USE tattooArt');
+      db.query(`USE ${MYSQL_DB}`);
 
       pool = mysql.createPool({
         connectionLimit: 10,
