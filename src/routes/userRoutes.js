@@ -17,6 +17,7 @@ const {
   getAllUsers,
 } = require('../controllers/users');
 const authUserOptional = require('../middlewares/authUserOptional');
+const activationStatus = require('../controllers/users/activationStatus');
 
 //MIDDLEWARES USERS
 
@@ -24,7 +25,9 @@ const authUserOptional = require('../middlewares/authUserOptional');
 route.post(`/users`, newUser);
 
 //Valida a un usuario recién registrado para darle acceso.
-route.put('/users/validate/:regCode', validateCode);
+route.get('/users/validate/:regCode', validateCode);
+
+route.post('/users/activation-status', activationStatus);
 
 //Logea a un usuario retornando un token.
 route.post('/users/login', loginUsers);
