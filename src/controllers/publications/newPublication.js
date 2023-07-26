@@ -7,7 +7,7 @@ const newPublication = async (req, res, next) => {
     try {
         const { title, place, description } = req.body;
 
-        if (!title || !place || !description || !req.files?.photo) {
+        if (!title || !description || !req.files?.photo) {
             generateError('Faltan campos', 400);
         }
         const photoFile = await savePhoto(req.files.photo, 500);

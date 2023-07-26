@@ -63,6 +63,8 @@ const selectPublicationtByIdQuery = async (publicationId, userId = 0) => {
           text: row.commentText,
           commenter: row.commenter,
           commenterAvatar: row.commenterAvatar,
+          owner: row.owner,
+          createdAt: row.createdAt,
         });
       }
     });
