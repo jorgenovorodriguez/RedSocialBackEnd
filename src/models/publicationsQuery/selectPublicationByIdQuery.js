@@ -9,13 +9,14 @@ const selectPublicationtByIdQuery = async (publicationId, userId = 0) => {
 
     const [publications] = await connection.query(
       `
-        SELECT
+            SELECT
             P.id AS publicationId,
             P.title,
             P.place,
             P.userId,
             P.description,
             U.username AS author,
+            U.avatar AS authorAvatar, -- Nuevo campo para el avatar del autor
             P.userId AS authorId,
             P.photoName,
             P.userId = ? AS owner,
@@ -53,6 +54,7 @@ const selectPublicationtByIdQuery = async (publicationId, userId = 0) => {
       createdAt: publications[0].createdAt,
       likes: publications[0].likes,
       likedByMe: publications[0].likedByMe,
+      authorAvatar: publications[0].authorAvatar, 
       comments: [],
     };
 

@@ -13,35 +13,37 @@ const selectAllPublicationQuery = async (
 
     date = date.toUpperCase() === 'ASC' ? 'ASC' : 'DESC';
 
-    const [results] = await connection.query(
-      `
-        SELECT
-          P.id AS publicationId,
-          P.title,
-          P.place,
-          P.description,
-          U.username AS author,
-          P.userId AS authorId,
-          P.photoName,
-          P.userId = ? AS owner,
-          P.createdAt,
-          COUNT(L.id) AS likes,
-          BIT_OR(L.userId = ?) AS likedByMe,
-          C.id AS commentId,
-          C.text AS commentText,
-          UC.username AS commenter,
-          UC.avatar AS commenterAvatar
-        FROM publications P
-        INNER JOIN users U ON P.userId = U.id
-        LEFT JOIN likes L ON P.id = L.publicationId
-        LEFT JOIN comments C ON P.id = C.publicationId
-        LEFT JOIN users UC ON C.userId = UC.id
-        WHERE P.title LIKE ? OR P.place LIKE ? OR P.description LIKE ?
-        GROUP BY P.id, C.id
-        ORDER BY P.createdAt ${date}
-      `,
-      [userId, userId, `%${keyword}%`, `%${keyword}%`, `%${keyword}%`]
-    );
+    
+  const [results] = await connection.query(
+    `
+      SELECT
+        P.id AS publicationId,
+        P.title,
+        P.place,
+        P.description,
+        U.username AS author,
+        U.avatar AS authorAvatar, -- Nuevo campo para obtener el avatar del autor
+        P.userId AS authorId,
+        P.photoName,
+        P.userId = ? AS owner,
+        P.createdAt,
+        COUNT(L.id) AS likes,
+        BIT_OR(L.userId = ?) AS likedByMe,
+        C.id AS commentId,
+        C.text AS commentText,
+        UC.username AS commenter,
+        UC.avatar AS commenterAvatar
+      FROM publications P
+      INNER JOIN users U ON P.userId = U.id -- Realiza INNER JOIN con la tabla users para obtener el avatar del autor
+      LEFT JOIN likes L ON P.id = L.publicationId
+      LEFT JOIN comments C ON P.id = C.publicationId
+      LEFT JOIN users UC ON C.userId = UC.id
+      WHERE P.title LIKE ? OR P.place LIKE ? OR P.description LIKE ?
+      GROUP BY P.id, C.id
+      ORDER BY P.createdAt ${date}
+    `,
+    [userId, userId, `%${keyword}%`, `%${keyword}%`, `%${keyword}%`]
+  );
 
     if (results.length < 1) {
       generateError('No hay resultados', 404);
@@ -58,6 +60,7 @@ const selectAllPublicationQuery = async (
         description,
         author,
         authorId,
+        authorAvatar,
         photoName,
         owner,
         createdAt,
@@ -77,6 +80,7 @@ const selectAllPublicationQuery = async (
           description,
           author,
           authorId,
+          authorAvatar,
           photoName,
           owner,
           createdAt,
