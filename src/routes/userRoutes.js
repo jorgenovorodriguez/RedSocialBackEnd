@@ -15,6 +15,8 @@ const {
   editUserAvatar,
   deleteUser,
   getAllUsers,
+  editUserInfo,
+
 } = require('../controllers/users');
 const authUserOptional = require('../middlewares/authUserOptional');
 const activationStatus = require('../controllers/users/activationStatus');
@@ -40,6 +42,9 @@ route.get('/users/:userId', authUserOptional, getUser);
 
 //Retorna un listado de usuarios a través de un filtro de búsqueda
 route.get('/users', authUserOptional, getAllUsers);
+
+//Permite actualizar la información del usuario.
+route.put('/users/info', authUser, userExists, editUserInfo);
 
 //Permite actualizar el avatar del usuario.
 route.put('/users/avatar', authUser, userExists, editUserAvatar);

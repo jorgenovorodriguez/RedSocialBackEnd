@@ -9,6 +9,7 @@ const editUsersPass = require('./editUserPass');
 const editUserAvatar = require('./editUseravatar');
 const deleteUser = require('./deleteUsers');
 const getAllUsers = require('./getAllUsers');
+const editUserInfo = require('./editUserInfo')
 
 module.exports = {
   newUser,
@@ -32,4 +33,6 @@ module.exports = {
   deleteUser,
 
   getAllUsers,
+
+  editUserInfo,
 };
