@@ -11,6 +11,7 @@ CREATE TABLE IF NOT EXISTS users (
     username VARCHAR(40) UNIQUE NOT NULL,
     role ENUM('artista', 'estudio') DEFAULT 'artista',
     avatar VARCHAR(100),
+    place VARCHAR(70),
     personalInfo VARCHAR(300),
     active BOOLEAN DEFAULT false,
     registrationCode VARCHAR(50),

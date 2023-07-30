@@ -4,22 +4,22 @@ const authUser = require('../middlewares/authUsers');
 const userExists = require('../middlewares/userExists');
 
 const {
-  newUser,
-  validateCode,
-  loginUsers,
-  getUser,
-  getOwnUser,
-  sendRecoverPass,
-  editUsersRecoverPass,
-  editUsersPass,
-  editUserAvatar,
-  deleteUser,
-  getAllUsers,
-  editUserInfo,
-
+    newUser,
+    validateCode,
+    loginUsers,
+    getUser,
+    getOwnUser,
+    sendRecoverPass,
+    editUsersRecoverPass,
+    editUsersPass,
+    editUserAvatar,
+    deleteUser,
+    getAllUsers,
+    editUserInfo,
 } = require('../controllers/users');
 const authUserOptional = require('../middlewares/authUserOptional');
 const activationStatus = require('../controllers/users/activationStatus');
+const editUserPlace = require('../controllers/users/editUserPlace');
 
 //MIDDLEWARES USERS
 
@@ -45,6 +45,9 @@ route.get('/users', authUserOptional, getAllUsers);
 
 //Permite actualizar la información del usuario.
 route.put('/users/info', authUser, userExists, editUserInfo);
+
+//Permite actualizar el lugar de residencia del usuario.
+route.put('/users/place', authUser, userExists, editUserPlace);
 
 //Permite actualizar el avatar del usuario.
 route.put('/users/avatar', authUser, userExists, editUserAvatar);
