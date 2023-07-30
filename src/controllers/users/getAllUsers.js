@@ -1,26 +1,26 @@
 const selectAllUsersQuery = require('../../models/usersQuery/selectAllUsersQuery');
 
 const getListPublication = async (req, res, next) => {
-  try {
-    const { keyword } = req.query;
+    try {
+        const { keyword } = req.query;
 
-    const users = await selectAllUsersQuery(keyword);
+        const users = await selectAllUsersQuery(keyword);
 
-    const isAuthenticated = req.user !== undefined;
+        const isAuthenticated = req.user !== undefined;
 
-    if (!isAuthenticated) {
-      users.forEach((user) => delete user.email);
+        if (!isAuthenticated) {
+            users.forEach((user) => delete user.email);
+        }
+
+        res.send({
+            status: 'ok',
+            data: {
+                users,
+            },
+        });
+    } catch (err) {
+        next(err);
     }
-
-    res.send({
-      status: 'ok',
-      data: {
-        users,
-      },
-    });
-  } catch (err) {
-    next(err);
-  }
 };
 
 module.exports = getListPublication;

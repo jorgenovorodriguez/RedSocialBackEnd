@@ -1,9 +1,6 @@
-const selectUsersByIdQuery = require("../../models/usersQuery/selectUserByIdQuery");
-const updateUserInfoQuery = require("../../models/usersQuery/updateUserInfoQuery");
-const { generateError } = require("../../services/errors");
-
-
-
+const selectUsersByIdQuery = require('../../models/usersQuery/selectUserByIdQuery');
+const updateUserInfoQuery = require('../../models/usersQuery/updateUserInfoQuery');
+const { generateError } = require('../../services/errors');
 
 const editUserInfo = async (req, res, next) => {
     try {
@@ -15,7 +12,6 @@ const editUserInfo = async (req, res, next) => {
 
         const user = await selectUsersByIdQuery(req.user.id);
 
-        console.log(personalInfo);
         await updateUserInfoQuery(personalInfo, req.user.id);
 
         res.send({
