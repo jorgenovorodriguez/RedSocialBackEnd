@@ -1,4 +1,5 @@
 const updateUsersRegCodeQuery = require('../../models/usersQuery/updateUsersRegCodeQuery');
+const path = require('path');
 
 const validateCode = async (req, res, next) => {
   try {
@@ -6,10 +7,9 @@ const validateCode = async (req, res, next) => {
 
     await updateUsersRegCodeQuery(regCode);
 
-    res.send({
-      status: 'ok',
-      message: 'Usuario activado',
-    });
+
+    const filePath = path.join(__dirname, '../../public/activation.html');
+    res.sendFile(filePath);
   } catch (err) {
     next(err);
   }
