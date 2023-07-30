@@ -21,6 +21,8 @@ app.use(cors());
 
 app.use(express.static(process.env.UPLOADS_DIR));
 
+app.use(express.static('public'));
+
 //MIDDLEWARE USERS
 app.use(userRoutes);
 
