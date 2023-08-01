@@ -4,7 +4,13 @@ const bcrypt = require('bcrypt');
 
 const { generateError } = require('../../services/errors');
 
-const insertUserQuery = async (email, username, password, registrationCode) => {
+const insertUserQuery = async (
+    email,
+    username,
+    password,
+    role,
+    registrationCode
+) => {
     let connection;
 
     try {
@@ -31,8 +37,8 @@ const insertUserQuery = async (email, username, password, registrationCode) => {
         const hashedPass = await bcrypt.hash(password, 10);
 
         await connection.query(
-            `INSERT INTO users (email, username, password, createdAt, registrationCode) VALUES(?, ?, ?, ?, ?)`,
-            [email, username, hashedPass, new Date(), registrationCode]
+            `INSERT INTO users (role, email, username, password, createdAt, registrationCode) VALUES(?, ?, ?, ?, ?, ?)`,
+            [role, email, username, hashedPass, new Date(), registrationCode]
         );
     } finally {
         if (connection) connection.release();

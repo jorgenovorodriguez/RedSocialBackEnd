@@ -43,13 +43,13 @@ route.get('/users/:userId', authUserOptional, getUser);
 //Retorna un listado de usuarios a través de un filtro de búsqueda
 route.get('/users', authUserOptional, getAllUsers);
 
-//Permite actualizar la información del usuario.
+//Permite añadir o actualizar la información del usuario.
 route.put('/users/info', authUser, userExists, editUserInfo);
 
-//Permite actualizar el lugar de residencia del usuario.
+//Permite añadir o actualizar el lugar de residencia del usuario.
 route.put('/users/place', authUser, userExists, editUserPlace);
 
-//Permite actualizar el avatar del usuario.
+//Permite añadir o actualizar el avatar del usuario.
 route.put('/users/avatar', authUser, userExists, editUserAvatar);
 
 //Envía al usuario un correo de recuperación de contraseña.

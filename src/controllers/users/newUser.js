@@ -5,15 +5,16 @@ const sendMail = require('../../services/sendMail');
 
 const newUser = async (req, res, next) => {
     try {
-        const { email, username, password } = req.body;
-        if (!email || !username || !password) {
+        const { email, username, password, role } = req.body;
+
+        if (!email || !username || !password || !role) {
             generateError('Faltan campos', 400);
         }
 
         const regCode = uuid();
         console.log(req.body);
 
-        await insertUserQuery(email, username, password, regCode);
+        await insertUserQuery(email, username, password, role, regCode);
 
         const activationURL = `http://localhost:8000/users/validate/${regCode}`;
 
