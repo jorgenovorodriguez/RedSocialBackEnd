@@ -15,9 +15,9 @@ const editUserPlace = async (req, res, next) => {
 
         await updateUserPlaceQuery(place, req.user.id);
 
-        res.send({
+        res.status(200).json({
             status: 'ok',
-            message: 'Ubicación actualizada',
+            message: 'Lugar actualizado',
         });
     } catch (err) {
         next(err);
