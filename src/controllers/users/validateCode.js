@@ -7,8 +7,7 @@ const validateCode = async (req, res, next) => {
 
     await updateUsersRegCodeQuery(regCode);
 
-
-    const filePath = path.join(__dirname, '../../public/activation.html');
+    const filePath = path.join(__dirname, '../../public/index.html');
     res.sendFile(filePath);
   } catch (err) {
     next(err);
