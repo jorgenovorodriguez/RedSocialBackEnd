@@ -7,7 +7,7 @@ const newUser = async (req, res, next) => {
     try {
         const { email, username, password, role } = req.body;
 
-        if (!email || !username || !password || !role) {
+        if (!email || !username || !password) {
             generateError('Faltan campos', 400);
         }
 
