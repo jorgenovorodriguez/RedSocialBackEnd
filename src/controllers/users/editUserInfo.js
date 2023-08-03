@@ -18,8 +18,8 @@ const editUserInfo = async (req, res, next) => {
             status: 'ok',
             message: 'Usuario actualizado',
         });
-    } catch (err) {
-        next(err);
+    } catch (error) {
+        next(error);
     }
 };
 

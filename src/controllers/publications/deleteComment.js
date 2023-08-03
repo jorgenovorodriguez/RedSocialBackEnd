@@ -3,28 +3,31 @@ const selectPublicationtByIdQuery = require('../../models/publicationsQuery/sele
 const { generateError } = require('../../services/errors');
 
 const deleteComments = async (req, res, next) => {
-  try {
-    const { publicationId, commentId } = req.params;
+    try {
+        const { publicationId, commentId } = req.params;
 
-    const publication = await selectPublicationtByIdQuery(publicationId);
+        const publication = await selectPublicationtByIdQuery(publicationId);
 
-    if (!publication) {
-      generateError('Publicación no encontrada', 404);
+        if (!publication) {
+            generateError('Publicación no encontrada', 404);
+        }
+
+        if (publication.authorId !== req.user.id) {
+            generateError(
+                'No tienes permiso para eliminar este comentario',
+                403
+            );
+        }
+
+        await deleteCommentByIdQuery(commentId, publicationId);
+
+        res.send({
+            status: 'ok',
+            message: 'Comentario eliminado',
+        });
+    } catch (error) {
+        next(error);
     }
-
-    if (publication.authorId !== req.user.id) {
-      generateError('No tienes permiso para eliminar este comentario', 403);
-    }
-
-    await deleteCommentByIdQuery(commentId, publicationId);
-
-    res.send({
-      status: 'ok',
-      message: 'Comentario eliminado',
-    });
-  } catch (err) {
-    next(err);
-  }
 };
 
 module.exports = deleteComments;

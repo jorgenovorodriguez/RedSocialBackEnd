@@ -1,4 +1,4 @@
-const activationStatusQuery = require("../../models/usersQuery/activationStatusQuery");
+const activationStatusQuery = require('../../models/usersQuery/activationStatusQuery');
 
 const activationStatus = async (req, res, next) => {
     const { email } = req.body;
@@ -7,12 +7,11 @@ const activationStatus = async (req, res, next) => {
         await activationStatusQuery(email);
 
         res.send({
-            status: "ok",
-            message: "Usuario activado",
+            status: 'ok',
+            message: 'Usuario activado',
         });
-
-    } catch (err) {
-        next(err);
+    } catch (error) {
+        next(error);
     }
 };
 

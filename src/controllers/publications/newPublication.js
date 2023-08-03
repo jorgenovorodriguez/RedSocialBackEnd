@@ -26,8 +26,8 @@ const newPublication = async (req, res, next) => {
                 publication,
             },
         });
-    } catch (err) {
-        next(err);
+    } catch (error) {
+        next(error);
     }
 };
 

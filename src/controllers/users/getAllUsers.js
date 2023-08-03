@@ -18,8 +18,8 @@ const getListPublication = async (req, res, next) => {
                 users,
             },
         });
-    } catch (err) {
-        next(err);
+    } catch (error) {
+        next(error);
     }
 };
 

@@ -73,8 +73,8 @@ const main = async () => {
         `);
 
         console.log('¡Tablas creadas!');
-    } catch (err) {
-        console.error(err);
+    } catch (error) {
+        console.error(error);
     } finally {
         if (connection) connection.release();
 
