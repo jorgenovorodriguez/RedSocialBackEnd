@@ -1,23 +1,23 @@
-const errorStandard = (err, req, res, next) => {
-  console.error(err);
+const errorStandard = (error, req, res, next) => {
+    console.error(error);
 
-  res.status(err.httpStatus || 500).send({
-    status: 'error',
-    message: err.message,
-  });
+    res.status(error.httpStatus || 500).send({
+        status: 'error',
+        message: error.message,
+    });
 };
 
 const notFound = (req, res) => {
-  res.status(404).send({
-    status: 'error',
-    message: 'Ruta no encontrada',
-  });
+    res.status(404).send({
+        status: 'error',
+        message: 'Ruta no encontrada',
+    });
 };
 
-const generateError = (msg, code) => {
-  const err = new Error(msg);
-  err.httpStatus = code;
-  throw err;
+const generateError = (message, code) => {
+    const error = new Error(message);
+    error.httpStatus = code;
+    throw error;
 };
 
 module.exports = { errorStandard, notFound, generateError };

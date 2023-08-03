@@ -63,8 +63,8 @@ const newUser = async (req, res, next) => {
             message:
                 'Usuario creado, por favor revise su email para completar la activación de su cuenta',
         });
-    } catch (err) {
-        next(err);
+    } catch (error) {
+        next(error);
     }
 };
 

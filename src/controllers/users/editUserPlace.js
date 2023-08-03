@@ -19,8 +19,8 @@ const editUserPlace = async (req, res, next) => {
             status: 'ok',
             message: 'Lugar actualizado',
         });
-    } catch (err) {
-        next(err);
+    } catch (error) {
+        next(error);
     }
 };
 
