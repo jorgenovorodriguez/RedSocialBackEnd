@@ -25,6 +25,7 @@ CREATE TABLE IF NOT EXISTS publications (
 	title VARCHAR(50) NOT NULL,
     photoName VARCHAR(100) NOT NULL,
     place VARCHAR(100),
+    type ENUM ('Colaboración', 'Alquiler', 'Empleo'),
     description VARCHAR(200),
     userId INT UNSIGNED NOT NULL,
     createdAt DATETIME NOT NULL,

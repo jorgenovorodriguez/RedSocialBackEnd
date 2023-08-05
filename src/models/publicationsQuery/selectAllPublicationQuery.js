@@ -2,30 +2,30 @@ const getDB = require('../../db/getDB');
 const { generateError } = require('../../services/errors');
 
 const selectAllPublicationQuery = async (
-  keyword = '',
-  date = '',
-  userId = 0
+    keyword = '',
+    date = '',
+    userId = 0
 ) => {
-  let connection;
+    let connection;
 
-  try {
-    connection = await getDB();
+    try {
+        connection = await getDB();
 
-    date = date.toUpperCase() === 'ASC' ? 'ASC' : 'DESC';
+        date = date.toUpperCase() === 'ASC' ? 'ASC' : 'DESC';
 
-
-    const [results] = await connection.query(
-      `
+        const [results] = await connection.query(
+            `
       SELECT
         P.id AS publicationId,
         P.title,
         P.place,
+        P.type,
         P.description,
         U.username AS author,
-        U.avatar AS authorAvatar, -- Nuevo campo para obtener el avatar del autor
+        U.avatar AS authorAvatar,
         P.userId AS authorId,
         P.photoName,
-        p.videoName,
+        P.videoName,
         P.userId = ? AS owner,
         P.createdAt,
         COUNT(L.id) AS likes,
@@ -35,7 +35,7 @@ const selectAllPublicationQuery = async (
         UC.username AS commenter,
         UC.avatar AS commenterAvatar
       FROM publications P
-      INNER JOIN users U ON P.userId = U.id -- Realiza INNER JOIN con la tabla users para obtener el avatar del autor
+      INNER JOIN users U ON P.userId = U.id 
       LEFT JOIN likes L ON P.id = L.publicationId
       LEFT JOIN comments C ON P.id = C.publicationId
       LEFT JOIN users UC ON C.userId = UC.id
@@ -43,72 +43,74 @@ const selectAllPublicationQuery = async (
       GROUP BY P.id, C.id
       ORDER BY P.createdAt ${date}
     `,
-      [userId, userId, `%${keyword}%`, `%${keyword}%`, `%${keyword}%`]
-    );
+            [userId, userId, `%${keyword}%`, `%${keyword}%`, `%${keyword}%`]
+        );
 
-    if (results.length < 1) {
-      generateError('No hay resultados', 404);
-    }
+        if (results.length < 1) {
+            generateError('No hay resultados', 404);
+        }
 
-    const publications = [];
-    const comments = [];
+        const publications = [];
+        const comments = [];
 
-    results.forEach((row) => {
-      const {
-        publicationId,
-        title,
-        place,
-        description,
-        author,
-        authorId,
-        authorAvatar,
-        photoName,
-        videoName,
-        owner,
-        createdAt,
-        likes,
-        likedByMe,
-        commentId,
-        commentText,
-        commenter,
-        commenterAvatar,
-      } = row;
+        results.forEach((row) => {
+            const {
+                publicationId,
+                title,
+                place,
+                type,
+                description,
+                author,
+                authorId,
+                authorAvatar,
+                photoName,
+                videoName,
+                owner,
+                createdAt,
+                likes,
+                likedByMe,
+                commentId,
+                commentText,
+                commenter,
+                commenterAvatar,
+            } = row;
 
-      if (!publications.some((pub) => pub.id === publicationId)) {
-        publications.push({
-          id: publicationId,
-          title,
-          place,
-          description,
-          author,
-          authorId,
-          authorAvatar,
-          photoName,
-          videoName,
-          owner,
-          createdAt,
-          likes,
-          likedByMe,
-          comments: [],
+            if (!publications.some((pub) => pub.id === publicationId)) {
+                publications.push({
+                    id: publicationId,
+                    title,
+                    place,
+                    type,
+                    description,
+                    author,
+                    authorId,
+                    authorAvatar,
+                    photoName,
+                    videoName,
+                    owner,
+                    createdAt,
+                    likes,
+                    likedByMe,
+                    comments: [],
+                });
+            }
+
+            if (commentId) {
+                publications
+                    .find((pub) => pub.id === publicationId)
+                    .comments.push({
+                        id: commentId,
+                        text: commentText,
+                        commenter,
+                        commenterAvatar,
+                    });
+            }
         });
-      }
 
-      if (commentId) {
-        publications
-          .find((pub) => pub.id === publicationId)
-          .comments.push({
-            id: commentId,
-            text: commentText,
-            commenter,
-            commenterAvatar,
-          });
-      }
-    });
-
-    return publications;
-  } finally {
-    if (connection) connection.release();
-  }
+        return publications;
+    } finally {
+        if (connection) connection.release();
+    }
 };
 
 module.exports = selectAllPublicationQuery;
