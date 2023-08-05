@@ -2,17 +2,18 @@ const getDB = require('../../db/getDB');
 const { generateError } = require('../../services/errors');
 
 const selectPublicationtByIdQuery = async (publicationId, userId = 0) => {
-  let connection;
+    let connection;
 
-  try {
-    connection = await getDB();
+    try {
+        connection = await getDB();
 
-    const [publications] = await connection.query(
-      `
+        const [publications] = await connection.query(
+            `
             SELECT
             P.id AS publicationId,
             P.title,
             P.place,
+            P.type,
             P.userId,
             P.description,
             U.username AS author,
@@ -36,47 +37,48 @@ const selectPublicationtByIdQuery = async (publicationId, userId = 0) => {
         WHERE P.id = ?
         GROUP BY P.id, C.id
       `,
-      [userId, userId, publicationId]
-    );
+            [userId, userId, publicationId]
+        );
 
-    if (publications.length < 1) {
-      generateError('Publicación no encontrada', 404);
-    }
+        if (publications.length < 1) {
+            generateError('Publicación no encontrada', 404);
+        }
 
-    const publication = {
-      id: publications[0].publicationId,
-      title: publications[0].title,
-      place: publications[0].place,
-      description: publications[0].description,
-      author: publications[0].author,
-      authorId: publications[0].authorId,
-      photoName: publications[0].photoName,
-      videoName: publications[0].videoName,
-      owner: publications[0].owner,
-      createdAt: publications[0].createdAt,
-      likes: publications[0].likes,
-      likedByMe: publications[0].likedByMe,
-      authorAvatar: publications[0].authorAvatar,
-      comments: [],
-    };
+        const publication = {
+            id: publications[0].publicationId,
+            title: publications[0].title,
+            place: publications[0].place,
+            type: publications[0].type,
+            description: publications[0].description,
+            author: publications[0].author,
+            authorId: publications[0].authorId,
+            photoName: publications[0].photoName,
+            videoName: publications[0].videoName,
+            owner: publications[0].owner,
+            createdAt: publications[0].createdAt,
+            likes: publications[0].likes,
+            likedByMe: publications[0].likedByMe,
+            authorAvatar: publications[0].authorAvatar,
+            comments: [],
+        };
 
-    publications.forEach((row) => {
-      if (row.commentId) {
-        publication.comments.push({
-          id: row.commentId,
-          text: row.commentText,
-          commenter: row.commenter,
-          commenterAvatar: row.commenterAvatar,
-          owner: row.owner,
-          createdAt: row.createdAt,
+        publications.forEach((row) => {
+            if (row.commentId) {
+                publication.comments.push({
+                    id: row.commentId,
+                    text: row.commentText,
+                    commenter: row.commenter,
+                    commenterAvatar: row.commenterAvatar,
+                    owner: row.owner,
+                    createdAt: row.createdAt,
+                });
+            }
         });
-      }
-    });
 
-    return publication;
-  } finally {
-    if (connection) connection.release();
-  }
+        return publication;
+    } finally {
+        if (connection) connection.release();
+    }
 };
 
 module.exports = selectPublicationtByIdQuery;

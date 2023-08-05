@@ -5,7 +5,7 @@ const insertPublicationQuery = require('../../models/publicationsQuery/insertPub
 
 const newPublication = async (req, res, next) => {
     try {
-        const { title, place, description } = req.body;
+        const { title, place, type, description } = req.body;
         let photoName;
         let videoName;
 
@@ -13,8 +13,15 @@ const newPublication = async (req, res, next) => {
             generateError('Faltan campos', 400);
         }
 
-        if (!req.files || (req.files.photo && req.files.video) || (!req.files.photo && !req.files.video)) {
-            generateError('Debes seleccionar una imagen o un video, pero no ambos o ninguno', 400);
+        if (
+            !req.files ||
+            (req.files.photo && req.files.video) ||
+            (!req.files.photo && !req.files.video)
+        ) {
+            generateError(
+                'Debes seleccionar una imagen o un video, pero no ambos o ninguno',
+                400
+            );
         }
 
         if (req.files.photo) {
@@ -30,6 +37,7 @@ const newPublication = async (req, res, next) => {
             photoName,
             videoName,
             place,
+            type,
             description,
             req.user.id
         );

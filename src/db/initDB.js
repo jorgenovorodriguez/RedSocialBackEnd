@@ -42,6 +42,7 @@ const main = async () => {
                 photoName VARCHAR(100),
                 videoName VARCHAR(100),
                 place VARCHAR(100),
+                type ENUM ('Colaboración', 'Alquiler', 'Empleo'),
                 description VARCHAR(200),
                 userId INT UNSIGNED NOT NULL,
                 createdAt DATETIME NOT NULL,
