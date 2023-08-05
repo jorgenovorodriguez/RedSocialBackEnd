@@ -39,7 +39,8 @@ const main = async () => {
             CREATE TABLE IF NOT EXISTS publications (
                 id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
                 title VARCHAR(50) NOT NULL,
-                photoName VARCHAR(100) NOT NULL,
+                photoName VARCHAR(100),
+                videoName VARCHAR(100),
                 place VARCHAR(100),
                 description VARCHAR(200),
                 userId INT UNSIGNED NOT NULL,

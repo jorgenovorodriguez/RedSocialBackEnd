@@ -13,9 +13,9 @@ const selectAllPublicationQuery = async (
 
     date = date.toUpperCase() === 'ASC' ? 'ASC' : 'DESC';
 
-    
-  const [results] = await connection.query(
-    `
+
+    const [results] = await connection.query(
+      `
       SELECT
         P.id AS publicationId,
         P.title,
@@ -25,6 +25,7 @@ const selectAllPublicationQuery = async (
         U.avatar AS authorAvatar, -- Nuevo campo para obtener el avatar del autor
         P.userId AS authorId,
         P.photoName,
+        p.videoName,
         P.userId = ? AS owner,
         P.createdAt,
         COUNT(L.id) AS likes,
@@ -42,8 +43,8 @@ const selectAllPublicationQuery = async (
       GROUP BY P.id, C.id
       ORDER BY P.createdAt ${date}
     `,
-    [userId, userId, `%${keyword}%`, `%${keyword}%`, `%${keyword}%`]
-  );
+      [userId, userId, `%${keyword}%`, `%${keyword}%`, `%${keyword}%`]
+    );
 
     if (results.length < 1) {
       generateError('No hay resultados', 404);
@@ -62,6 +63,7 @@ const selectAllPublicationQuery = async (
         authorId,
         authorAvatar,
         photoName,
+        videoName,
         owner,
         createdAt,
         likes,
@@ -82,6 +84,7 @@ const selectAllPublicationQuery = async (
           authorId,
           authorAvatar,
           photoName,
+          videoName,
           owner,
           createdAt,
           likes,

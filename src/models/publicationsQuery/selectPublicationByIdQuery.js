@@ -19,6 +19,7 @@ const selectPublicationtByIdQuery = async (publicationId, userId = 0) => {
             U.avatar AS authorAvatar, -- Nuevo campo para el avatar del autor
             P.userId AS authorId,
             P.photoName,
+            P.videoName,
             P.userId = ? AS owner,
             P.createdAt,
             COUNT(L.id) AS likes,
@@ -50,11 +51,12 @@ const selectPublicationtByIdQuery = async (publicationId, userId = 0) => {
       author: publications[0].author,
       authorId: publications[0].authorId,
       photoName: publications[0].photoName,
+      videoName: publications[0].videoName,
       owner: publications[0].owner,
       createdAt: publications[0].createdAt,
       likes: publications[0].likes,
       likedByMe: publications[0].likedByMe,
-      authorAvatar: publications[0].authorAvatar, 
+      authorAvatar: publications[0].authorAvatar,
       comments: [],
     };
 

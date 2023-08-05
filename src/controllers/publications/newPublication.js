@@ -1,20 +1,34 @@
-const insertPublicationQuery = require('../../models/publicationsQuery/insertPublicationQuery');
-const savePhoto = require('../../services/savePhoto');
-
 const { generateError } = require('../../services/errors');
+const savePhoto = require('../../services/savePhoto');
+const saveVideo = require('../../services/saveVideo');
+const insertPublicationQuery = require('../../models/publicationsQuery/insertPublicationQuery');
 
 const newPublication = async (req, res, next) => {
     try {
         const { title, place, description } = req.body;
+        let photoName;
+        let videoName;
 
-        if (!title || !description || !req.files?.photo) {
+        if (!title || !description) {
             generateError('Faltan campos', 400);
         }
-        const photoFile = await savePhoto(req.files.photo, 500);
+
+        if (!req.files || (req.files.photo && req.files.video) || (!req.files.photo && !req.files.video)) {
+            generateError('Debes seleccionar una imagen o un video, pero no ambos o ninguno', 400);
+        }
+
+        if (req.files.photo) {
+            photoName = await savePhoto(req.files.photo, 500);
+        }
+
+        if (req.files.video) {
+            videoName = await saveVideo(req.files.video, 50 * 1024 * 1024);
+        }
 
         const publication = await insertPublicationQuery(
             title,
-            photoFile,
+            photoName,
+            videoName,
             place,
             description,
             req.user.id

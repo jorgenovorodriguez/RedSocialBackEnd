@@ -3,6 +3,7 @@ const getDB = require('../../db/getDB');
 const insertPublicationQuery = async (
   title,
   photoName,
+  videoName,
   place,
   description,
   userId
@@ -15,14 +16,15 @@ const insertPublicationQuery = async (
     const createdAt = new Date();
 
     const [publication] = await connection.query(
-      `INSERT INTO publications(title, photoName, place, description, userId, createdAt) VALUES(?, ?, ?, ?, ?, ?)`,
-      [title, photoName, place, description, userId, createdAt]
+      `INSERT INTO publications(title, photoName, videoName, place, description, userId, createdAt) VALUES(?, ?, ?, ?, ?, ?, ?)`,
+      [title, photoName, videoName, place, description, userId, createdAt]
     );
 
     return {
       id: publication.insertId,
       title,
       photoName,
+      videoName,
       place,
       description,
       userId,
