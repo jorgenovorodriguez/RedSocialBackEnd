@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS users (
     email VARCHAR(100) UNIQUE NOT NULL,
     password VARCHAR(30) NOT NULL,
     username VARCHAR(40) UNIQUE NOT NULL,
-    role ENUM('artista', 'estudio') DEFAULT 'artista',
+    role ENUM('Artista', 'Estudio') DEFAULT 'Artista',
     avatar VARCHAR(100),
     place VARCHAR(70),
     personalInfo VARCHAR(300),

@@ -2,23 +2,20 @@ const insertUserQuery = require('../../models/usersQuery/insertUserQuery');
 const { v4: uuid } = require('uuid');
 const { generateError } = require('../../services/errors');
 const sendMail = require('../../services/sendMail');
+const validateSchema = require('../../services/validateSchema');
+const newUserSchema = require('../../schemas/users/newUserSchema');
 
 const newUser = async (req, res, next) => {
     try {
         const { email, username, password, role } = req.body;
 
-        if (!email || !username || !password) {
-            generateError('Faltan campos', 400);
-        }
+        await validateSchema(newUserSchema, req.body);
 
         const regCode = uuid();
-        console.log(req.body);
 
         await insertUserQuery(email, username, password, role, regCode);
 
         const activationURL = `http://localhost:8000/users/validate/${regCode}`;
-
-        // ...
 
         const emailSubject = 'Activación de usuario en tattooArt';
         const emailBody = `

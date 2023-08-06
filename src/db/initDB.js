@@ -23,7 +23,7 @@ const main = async () => {
                 email VARCHAR(100) UNIQUE NOT NULL,
                 password VARCHAR(100) NOT NULL,
                 username VARCHAR(100) UNIQUE NOT NULL,
-                role ENUM('artista', 'estudio') DEFAULT 'artista',
+                role ENUM('Artista', 'Estudio') DEFAULT 'Artista',
                 avatar VARCHAR(100),
                 place VARCHAR (70),
                 personalInfo VARCHAR(300),
