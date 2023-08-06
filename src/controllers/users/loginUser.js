@@ -2,17 +2,14 @@ const selectUserEmailQuery = require('../../models/usersQuery/selectUserEmailQue
 const { generateError } = require('../../services/errors');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const validateSchema = require('../../services/validateSchema');
+const loginUserSchema = require('../../schemas/users/loginUserSchema');
 
 const loginUsers = async (req, res, next) => {
     const { email, password } = req.body;
 
     try {
-        if (!email) {
-            generateError('Debe introducir un email', 400);
-        }
-        if (!password) {
-            generateError('Debe introducir una contraseña', 400);
-        }
+        await validateSchema(loginUserSchema, req.body);
 
         const user = await selectUserEmailQuery(email);
 

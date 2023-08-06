@@ -2,6 +2,8 @@ const { generateError } = require('../../services/errors');
 const savePhoto = require('../../services/savePhoto');
 const saveVideo = require('../../services/saveVideo');
 const insertPublicationQuery = require('../../models/publicationsQuery/insertPublicationQuery');
+const validateSchema = require('../../services/validateSchema');
+const newPublicationSchema = require('../../schemas/publications/newPublicationSchema');
 
 const newPublication = async (req, res, next) => {
     try {

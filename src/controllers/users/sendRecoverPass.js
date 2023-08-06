@@ -5,14 +5,14 @@ const randomstring = require('randomstring');
 
 const { generateError } = require('../../services/errors');
 const sendMail = require('../../services/sendMail');
+const validateSchema = require('../../services/validateSchema');
+const sendRecoverPassSchema = require('../../schemas/users/sendRecoverPassSchema');
 
 const sendRecoverPass = async (req, res, next) => {
     try {
         const { email } = req.body;
 
-        if (!email) {
-            generateError('Faltan campos', 400);
-        }
+        await validateSchema(sendRecoverPassSchema, req.body);
 
         await selectUserByEmailQuery(email);
 
