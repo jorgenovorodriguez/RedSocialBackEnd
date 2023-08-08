@@ -17,9 +17,9 @@ const selectAllUsersQuery = async (keyword = '') => {
               avatar,
               place
           FROM users 
-          WHERE userName LIKE ? OR personalInfo LIKE ?
+          WHERE userName LIKE ? OR role LIKE ? OR place LIKE ?
       `,
-            [`%${keyword}%`, `%${keyword}%`]
+            [`%${keyword}%`, `%${keyword}%`, `%${keyword}%`]
         );
 
         // Si no hay usuarios, lanzamos un error.
