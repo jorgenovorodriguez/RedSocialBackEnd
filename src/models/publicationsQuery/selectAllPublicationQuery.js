@@ -39,11 +39,19 @@ const selectAllPublicationQuery = async (
       LEFT JOIN likes L ON P.id = L.publicationId
       LEFT JOIN comments C ON P.id = C.publicationId
       LEFT JOIN users UC ON C.userId = UC.id
-      WHERE P.title LIKE ? OR P.place LIKE ? OR P.description LIKE ?
+      WHERE P.title LIKE ? OR P.place LIKE ? OR P.description LIKE ? OR P.type LIKE ? OR U.username LIKE ?
       GROUP BY P.id, C.id
       ORDER BY P.createdAt ${date}
     `,
-            [userId, userId, `%${keyword}%`, `%${keyword}%`, `%${keyword}%`]
+            [
+                userId,
+                userId,
+                `%${keyword}%`,
+                `%${keyword}%`,
+                `%${keyword}%`,
+                `%${keyword}%`,
+                `%${keyword}%`,
+            ]
         );
 
         if (results.length < 1) {
