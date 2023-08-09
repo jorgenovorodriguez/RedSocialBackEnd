@@ -7,9 +7,9 @@ const editUsersPass = async (req, res, next) => {
     try {
         const { currentPass, newPass } = req.body;
 
-        await validateSchema(editUserPassSchema, req.body);
-
         await upDateUsersPassQuery(currentPass, newPass, req.user.id);
+
+        await validateSchema(editUserPassSchema, req.body);
 
         res.send({
             status: 'ok',
