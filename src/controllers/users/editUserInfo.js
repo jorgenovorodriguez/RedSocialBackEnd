@@ -1,14 +1,14 @@
 const selectUsersByIdQuery = require('../../models/usersQuery/selectUserByIdQuery');
 const updateUserInfoQuery = require('../../models/usersQuery/updateUserInfoQuery');
 const { generateError } = require('../../services/errors');
+const validateSchema = require('../../services/validateSchema');
+const editPersonalInfoSchema = require('../../schemas/users/editPersonalInfoSchema');
 
 const editUserInfo = async (req, res, next) => {
     try {
         const { personalInfo } = req.body;
 
-        if (!personalInfo) {
-            generateError('Faltan campos', 400);
-        }
+        await validateSchema(editPersonalInfoSchema, req.body);
 
         const user = await selectUsersByIdQuery(req.user.id);
 
