@@ -24,7 +24,10 @@ const selectAllUsersQuery = async (keyword = '') => {
 
         // Si no hay usuarios, lanzamos un error.
         if (users.length < 1) {
-            generateError('No hay usuarios', 404);
+            generateError(
+                'Todavía no hay usuarios. ¡Regístrate y sé el primero!',
+                404
+            );
         }
 
         return users;

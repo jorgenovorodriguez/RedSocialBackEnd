@@ -10,7 +10,7 @@ const newPublicationSchema = joi.object({
         .string()
         .valid('Normal', 'Alquiler', 'Colaboración', 'Empleo')
         .required(),
-    description: joi.string().required().messages(joiErrorMessages),
+    description: joi.string().required().max(100).messages(joiErrorMessages),
     photoName: imgSchema.unknown(true).optional().messages(joiErrorMessages),
 });
 
