@@ -14,7 +14,7 @@ const authUser = async (req, res, next) => {
         try {
             tokenInfo = jwt.verify(authorization, process.env.SECRET);
         } catch {
-            generateError('Token inválido', 401);
+            generateError('Regístrate para participar', 401);
         }
 
         req.user = tokenInfo;

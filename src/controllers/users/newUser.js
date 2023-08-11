@@ -25,7 +25,7 @@ const newUser = async (req, res, next) => {
           <title>Correo Electrónico de Activación</title>
         </head>
         <body>
-          <p>¡Hola usuario! Bienvenid@ a tattoArt.</p>
+          <p>¡Hola usuario! Bienvenid@ a TattoArt.</p>
           <p>Puedes activar tu cuenta haciendo clic en el siguiente enlace:</p>
           <a id="activationLink" href="http://localhost:8000/users/validate/${regCode}" style="display: inline-block; padding: 10px; background-color: #3498db; color: #fff; text-decoration: none;">Activar cuenta</a>
         
