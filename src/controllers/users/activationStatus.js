@@ -2,7 +2,6 @@ const activationStatusQuery = require('../../models/usersQuery/activationStatusQ
 
 const activationStatus = async (req, res, next) => {
     const { email } = req.body;
-    console.log(email);
     try {
         await activationStatusQuery(email);
 
